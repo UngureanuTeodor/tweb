@@ -1,0 +1,36 @@
+
+	body{
+		display:block;
+		background-color:black;
+	}
+	
+	#container{
+		background-image:url(assets/background.png);
+		background-repeat: no-repeat;
+		background-position: fixed;
+		position: absolute;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+		background-size:cover;
+	}
+	
+	#container_register{
+		position: absolute;
+		top:388px;
+		left:750px;
+		width:205px;
+		height:137px;
+	}
+	
+	#container_login{
+		position: absolute;
+		top: 90px;
+		left: 1032px;
+		width: 250px;
+		height: 150px;
+		background-image: url(assets/login.png);
+		background-repeat: no-repeat;
+		background-position: center;
+	}
