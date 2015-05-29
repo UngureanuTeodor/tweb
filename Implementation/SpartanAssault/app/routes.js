@@ -4,12 +4,10 @@ module.exports = function(app, auth) {
         res.render('index');
     });
 
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user : req.user
-        });
-    });
-
+	app.post('/register', function(req, res) {
+		//
+	})
+	
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');

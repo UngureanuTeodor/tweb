@@ -14,7 +14,7 @@ var configDB = require('./config/database.js');
 
 mongDB.connect(configDB.url);
 
-//require('./config/authentification')(auth);
+require('./config/authentification')(auth);
 
 app.use(morgan('dev'));
 app.use(cookieParser());
