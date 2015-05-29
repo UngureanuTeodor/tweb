@@ -4,11 +4,46 @@
 <head>
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="canvas_style.css" media="screen" />
+<link rel="import" href="work.html">
 <title>Spartan Assault</title>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body>
-	<div id="container">	
+	<div id="container">
+		<div id="west_banner">
+			<div id="overview" class="buttons">Overview</div>
+			<div id="objectives" class="buttons">Objectives</div>
+			<div id="guild" class="buttons">Guild</div>
+			<div id="work" class="buttons">Work</div>
+			<div id="colosseum" class="buttons">Colosseum</div>
+			<div id="training" class="buttons">Training</div>
+			<div id="top" class="buttons">Top</div>
+			<div id="left_button" class="buttons"></div>
+			<div id="right_button" class="buttons"></div>
+			<div id="weaponsmith" class="buttons">Weaponsmith</div>
+			<div id="armoursmith" class="buttons">Armoursmith</div>
+			<div id="goodsMerchant" class="buttons">Goods Merchant</div>
+			<div id="crafting" class="buttons">Crafting</div>
+			<div id="upgrade" class="buttons">Upgrade</div>
+			<div id="market" class="buttons">Market</div>
+		</div>
+		<div id="canvas"></div>
 	</div>
+	
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+	<script type="text/javascript" language="javascript">
+
+		$(document).ready(function() {
+			$("#work").click(function(event){
+				//var html = document.open('work.html');
+				//document.getElementById('canvas').innerHTML = html;
+				$("#canvas").load("work.html");
+			});
+         });
+		 
+    </script>
+
 </body>
+</html>

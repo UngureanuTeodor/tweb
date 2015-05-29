@@ -15,3 +15,102 @@
 		height:100%;
 		background-size:cover;
 	}
+	
+	#west_banner{
+		position: absolute;
+		top:155px;
+		left:95px;
+		width:153px;
+		height:535px;
+	}
+	
+	#canvas{
+		position:absolute;
+		top:135px;
+		left:248px;
+		width:1096px;
+		height:623px;
+		background-color:white;
+	}
+	
+	#overview, #objectives, #guild, #work, #colosseum, #training, #top,
+	#weaponsmith, #armoursmith, #goodsMerchant, #crafting, #upgrade, #market,
+	#left_button, #right_button, #aux .buttons{
+		position:relative;
+		width: 110px;
+		height: 24px;
+		left: 21px;
+		background-color:rgb(26,0,0);
+		opacity:0.7;
+		font-size:12px;
+		color:white;
+		text-align: center;
+		vertical-align: middle;
+		line-height: 24px; 
+		font-weight: 900;
+	}
+	
+	#overview{
+		top:0px;
+	}
+	
+	#objectives{
+		top:8px;
+	}
+	
+	#guild{
+		top:16px;
+	}
+	
+	#work{
+		top:24px;
+	}
+	
+	#colosseum{
+		top:32px;
+	}
+	
+	#training{
+		top:40px;
+	}
+	
+	#top{
+		top:48px;
+	}
+	
+	#left_button{
+		top:73px;
+		width:47px;
+		height:47px;
+	}
+	
+	#right_button{
+		top:26px;
+		width:47px;
+		height:47px;
+		left:84px;
+	}
+	
+	#weaponsmith{
+		top:50px;
+	}
+	
+	#armoursmith{
+		top:58px;
+	}
+	
+	#goodsMerchant{
+		top:66px;
+	}
+	
+	#crafting{
+		top:74px;
+	}
+	
+	#upgrade{
+		top:82px;
+	}
+	
+	#market{
+		top:90px;
+	}

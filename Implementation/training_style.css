@@ -1,0 +1,14 @@
+
+	body{
+		display:block;
+		background-color:black;
+	}
+	
+	#container{
+		background-color:black;
+		position: absolute;
+		top:0;
+		left:0;
+		width:1096px;
+		height:623px;
+	}
