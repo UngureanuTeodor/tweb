@@ -3,7 +3,7 @@
 <html>
 <head>
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-	<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" />
 	<title>Spartan Assault</title>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
@@ -16,9 +16,10 @@
 				<input type="password" name="pass_login" style="position:relative; top:20px; left: 22px; width: 82%; height: 18px; background-color:transparent; border:none; opacity:0.5;"><br><br><br>
 				<input type="submit" value="login" style="position:relative; top: -6px; left: 65px; width: 50%; height: 28px; opacity:0;">
 			</form>
-	
 		</div>
-	
+		<% if (message.length > 0) { %>
+				<div class="alert alert-danger"><%= message %></div>
+		<% } %>
 		<div id="container_register">
 
 			<form action="/register" method="post" style="color:white;">
@@ -28,7 +29,6 @@
 				<input type="checkbox" name="license" style="position:relative; top: -9px; left: -5px; width:12px; height:12px;"><br><br>
 				<input type="submit" value="register" style="position:relative; top:-20px; left: 28px; width:117px; height:40px; opacity:0;">
 			</form>
-		
 		</div>	
 	</div>
 </body>

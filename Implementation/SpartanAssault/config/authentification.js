@@ -16,20 +16,32 @@ module.exports = function(passport) {
         });
     });
 
-    passport.use('local-signup', new LocalStrategy({
-        // by default, local strategy uses username and password, we will override with email
+    passport.use('local-signup', new LocalStrategy(//{
+    /*    // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
         passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback
-    },
-    function(req, email, password, done) {
-
+    },*/
+    function(req, done) {
         // asynchronous
-        process.nextTick(function() {
-
+       // process.nextTick(function() {
+		console.log('here I am');
+		var username = req.body.user_register;
+		console.log(username);
+		if(username.length > 25) {
+			return done(null, false, req.flash('message', 'The username is too large.'));
+		}
+		var pass = User.hash(req.body.pass_register);
+		var email = req.body.email_register;
+		var license = req.body.license;
+		/*console.log('User '+ username);
+		console.log(' Password '+ pass);
+		console.log('Email '+ email);
+		console.log('Checkbox ' + license);*/
+		
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.checkEmail({ 'local.email' :  email }, function(err, user) {
+        /*User.checkEmail({ 'local.email' :  email }, function(err, user) {
             // if there are any errors, return the error
             if (err)
                 return done(err);
@@ -55,9 +67,9 @@ module.exports = function(passport) {
                 });
             }
 
-        });    
+        }); */   
 
-        });
+        //});
 
     }));
 

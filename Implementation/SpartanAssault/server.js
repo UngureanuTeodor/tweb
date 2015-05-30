@@ -1,7 +1,8 @@
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 3000;
-var mongDB = require('mongoose');
+//var _mysql = require('mysql');
+//var mongDB = require('mongoose');
 var auth = require('passport');
 var flash    = require('connect-flash');
 
@@ -10,9 +11,26 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
-var configDB = require('./config/database.js');
+//var configDB = require('./config/database.js');
 
-mongDB.connect(configDB.url);
+//mongDB.connect(configDB.url);
+/*var mysql = _mysql.createConnection({
+	host : configDB.host,
+	user : configDB.user,
+	password : configDB.pass,
+	database : configDB.name
+});
+
+mysql.connect();
+			
+mysql.query('SELECT * FROM users', function(err) {
+	if(!err)
+		console.log('Database connected');
+	else
+		console.log('Error');
+});*/
+
+app.set('views', __dirname + '/views');
 
 require('./config/authentification')(auth);
 
@@ -21,6 +39,7 @@ app.use(cookieParser());
 app.use(bodyParser());
 
 app.use(express.static(__dirname + '/public'));
+app.set('view engine', 'ejs');
 
 app.use(session({ secret: 'randomsecretforspartanassault' })); 
 app.use(auth.initialize());
