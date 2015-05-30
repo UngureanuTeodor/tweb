@@ -2,14 +2,14 @@ var mysql = require('mysql');
 var configDB = require('../config/database.js');
 var user = require('./models/user.js');
 
-module.exports = function(app, auth) {
+module.exports = function(app, passport) {
 
     app.get('/', function(req, res) {
-        res.render('index.ejs', { message: req.flash('mesage') });
+        res.render('index.ejs', { message: req.flash('message') });
     });
 
-	app.post('/register', auth.authenticate('local-signup', {
-		successRedirect : '/',
+	app.post('/register', passport.authenticate('local-signup', {
+		successRedirect : '/success',
 		failureRedirect : '/',
 		failureFlash : true
 	}));
@@ -43,9 +43,10 @@ module.exports = function(app, auth) {
         res.redirect('/');
     });
 	
-	app.get('*', function(req,res) {
+	/*app.get('*', function(req,res) {
 		res.redirect('/');
-	});
+		//check if logged in
+	});*/
 };
 
 function isLoggedIn(req, res, next) {
