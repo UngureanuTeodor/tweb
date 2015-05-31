@@ -1,6 +1,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
 
 var User = require('../app/models/user');
+var command = require('../app/models/query.js');
 
 module.exports = function(passport) {
 
@@ -25,20 +26,33 @@ module.exports = function(passport) {
     function(req, user_register, pass_register, done) {
 
         // asynchronous
-        // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
 
-        // find a user whose email is the same as the forms email
-        // we are checking to see if the user trying to login already exists
-       
-		console.log('User : '+user_register);
-		console.log('Pass : '+pass_register);
-		console.log('Email : '+req.body.email_register);
-		console.log('Checkbox : '+req.body.license);
-		
-		if(user_register.length > 25) {
-			return done(null, false, req.flash('message', 'The username is too large.'));
-		}
+			var hashedPass = User.hash(pass_register);
+			//console.log('User : '+user_register);
+			//console.log('Pass : '+hashedPass);
+			//console.log('Email : '+req.body.email_register);
+			//console.log('Checkbox : '+req.body.license);
+			
+			if(user_register.length > 25) {
+				return done(null, false, req.flash('messageUser', 'The username is too large.'));
+			}
+			if(pass_register.length < 5) {
+				return done(null, false, req.flash('messagePass', 'The password is too weak.'))
+			}
+			
+			var newCommand = new command('SELECT * FROM users');
+			console.log('sent command');
+			var result = newCommand.query;
+			if(result === 'Error') {
+				console.log('Error');
+			}
+			else {
+				console.log('result: '+result);
+				for(var i in result) {
+					console.log('Result : ' + result[i].username);
+				}
+			}
         });
     }));
 };

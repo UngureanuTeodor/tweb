@@ -3,8 +3,9 @@
   "main": "server.js",
   "dependencies" : {
     "express" : "~4.0.0",           
-    "ejs" : "~0.8.5",               
-    "mysql" : "*",          
+    "ejs" : "~0.8.5", 
+	"mysql" : "*",
+    "node-mysql" : "*",          
     "passport" : "~0.1.17",         
     "passport-local" : "~0.1.6",    
     "connect-flash" : "~0.1.1",     
@@ -14,6 +15,6 @@
     "body-parser": "~1.0.0",
     "cookie-parser": "~1.0.0",
     "method-override": "~1.0.0",
-    "express-session": "~1.0.0"   
+    "express-session": "~1.0.0"  
   }
 }

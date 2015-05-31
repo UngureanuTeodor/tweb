@@ -2,7 +2,7 @@ var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 3000;
 //var _mysql = require('mysql');
-//var mongDB = require('mongoose');
+
 var auth = require('passport');
 var flash    = require('connect-flash');
 
@@ -13,23 +13,22 @@ var session      = require('express-session');
 
 //var configDB = require('./config/database.js');
 
-//mongDB.connect(configDB.url);
 /*var mysql = _mysql.createConnection({
 	host : configDB.host,
 	user : configDB.user,
 	password : configDB.pass,
 	database : configDB.name
-});
+});*/
 
-mysql.connect();
-			
-mysql.query('SELECT * FROM users', function(err) {
-	if(!err)
-		console.log('Database connected');
+/*mysql.connect();
+
+mysql.query('SELECT * FROM users', function(err, rows, fields) {
+  if (!err)
+    console.log('The solution is: ', rows);
 	else
 		console.log('Error');
 });*/
-
+			
 app.set('views', __dirname + '/views');
 
 require('./config/authentification')(auth);

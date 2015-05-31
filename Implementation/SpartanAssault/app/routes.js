@@ -1,11 +1,10 @@
-var mysql = require('mysql');
-var configDB = require('../config/database.js');
 var user = require('./models/user.js');
 
 module.exports = function(app, passport) {
 
     app.get('/', function(req, res) {
-        res.render('index.ejs', { message: req.flash('message') });
+        res.render('index.ejs', { messageUser: req.flash('messageUser'),
+								  messagePass: req.flash('messagePass')});
     });
 
 	app.post('/register', passport.authenticate('local-signup', {

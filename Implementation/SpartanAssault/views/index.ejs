@@ -17,8 +17,11 @@
 				<input type="submit" value="login" style="position:relative; top: -6px; left: 65px; width: 50%; height: 28px; opacity:0;">
 			</form>
 		</div>
-		<% if (message.length > 0) { %>
-				<div class="alert alert-danger"><%= message %></div>
+		<% if (messageUser.length > 0) { %>
+				<div class="alert alert-danger" style="position:relative; top:322px; left:840px; width: 200px; height: 15px; background-color:transparent; color: red;"><b><%= messageUser %></b></div>
+		<% } %>
+		<% if (messagePass.length > 0) { %>
+				<div class="alert alert-danger" style="position:relative; top:355px; left:840px; width: 200px; height: 15px; background-color:transparent; color: red;"><b><%= messagePass %></b></div>
 		<% } %>
 		<div id="container_register">
 
