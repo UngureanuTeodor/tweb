@@ -1,11 +1,13 @@
 
-	#works{
-		position:absolute;
+	body{
+		display:block;
+	}
+	
+	#container{
+		background-color:red;
+		position: absolute;
 		top:0;
 		left:0;
-		width: 100px;
-		height: 100px;
-		background-color:green;
-		z-index:4;
-		color:blue;
+		width:1073px;
+		height:528px;
 	}

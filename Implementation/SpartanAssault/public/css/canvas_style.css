@@ -8,6 +8,7 @@
 		background-image:url(../assets/canvas.png);
 		background-repeat: no-repeat;
 		background-position: fixed;
+		background-color:black;
 		position: absolute;
 		top:0;
 		left:0;
@@ -18,28 +19,56 @@
 	
 	#west_banner{
 		position: absolute;
-		top:155px;
-		left:95px;
-		width:153px;
-		height:535px;
+		top:115px;
+		left:86px;
+		width:122px;
+		height:515px;
+	}
+	
+	#west_banner .butonActiv {
+		background-color: rgb(224,184,52);
+	}
+	
+	.addBackgroundLeft {
+		background-image:url(../assets/yellow_frame_left.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
+	}
+	
+	.addBackgroundRight {
+		background-image:url(../assets/yellow_frame_right.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
+	}
+	
+	.activeButton {
+		background-color:rgb(224,184,52) !important;
+	}
+	
+	#west_banner_south {
+		position: absolute;
+		top:213px;
+		width:122px;
+		height:255px;
 	}
 	
 	#canvas{
 		position:absolute;
-		top:135px;
-		left:248px;
-		width:1096px;
-		height:623px;
+		top:108px;
+		left:208px;
+		width:1073px;
+		height:528px;
 		background-color:white;
+		opacity:0.5;
 	}
 	
 	#overview, #objectives, #guild, #work, #colosseum, #training, #top,
 	#weaponsmith, #armoursmith, #goodsMerchant, #crafting, #upgrade, #market,
 	#left_button, #right_button, #aux .buttons{
 		position:relative;
-		width: 110px;
+		width: 100px;
 		height: 24px;
-		left: 21px;
+		left: 11px;
 		background-color:rgb(26,0,0);
 		opacity:0.7;
 		font-size:12px;
@@ -48,6 +77,10 @@
 		vertical-align: middle;
 		line-height: 24px; 
 		font-weight: 900;
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+		user-select: none;
 	}
 	
 	#overview{
@@ -79,38 +112,39 @@
 	}
 	
 	#left_button{
-		top:73px;
-		width:47px;
-		height:47px;
+		top:14px;
+		width:40px;
+		height:40px;
+		left:14px;
 	}
 	
 	#right_button{
-		top:26px;
-		width:47px;
-		height:47px;
-		left:84px;
+		left:68px;
+		top:-26px;
+		width:40px;
+		height:40px;
 	}
 	
 	#weaponsmith{
-		top:50px;
+		top:-16px;
 	}
 	
 	#armoursmith{
-		top:58px;
+		top:-8px;
 	}
 	
 	#goodsMerchant{
-		top:66px;
+		top:0px;
 	}
 	
 	#crafting{
-		top:74px;
+		top:8px;
 	}
 	
 	#upgrade{
-		top:82px;
+		top:16px;
 	}
 	
 	#market{
-		top:90px;
+		top:24px;
 	}
