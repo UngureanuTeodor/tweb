@@ -1,0 +1,13 @@
+
+	body{
+		display:block;
+	}
+	
+	#container{
+		background-color:white;
+		position: absolute;
+		top:0;
+		left:0;
+		width:1073px;
+		height:528px;
+	}

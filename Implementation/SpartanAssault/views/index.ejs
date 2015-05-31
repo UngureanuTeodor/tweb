@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" />
+	<title>Spartan Assault</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+	<div id="container">
+		<div id="container_login">
+			
+			<form action="https://www.youtube.com" style="color:white;">
+				<input type="text" name="user_login" style="position:relative; top:33px; left: 22px; width: 82%; height: 18px; background-color:transparent; border:none; opacity:0.5;"><br><br><br>
+				<input type="password" name="pass_login" style="position:relative; top:20px; left: 22px; width: 82%; height: 18px; background-color:transparent; border:none; opacity:0.5;"><br><br><br>
+				<input type="submit" value="login" style="position:relative; top: -6px; left: 65px; width: 50%; height: 28px; opacity:0;">
+			</form>
+		</div>
+		<% if (messageUser.length > 0) { %>
+				<div class="alert alert-danger" style="position:relative; top:322px; left:840px; width: 200px; height: 15px; background-color:transparent; color: red;"><b><%= messageUser %></b></div>
+		<% } %>
+		<% if (messagePass.length > 0) { %>
+				<div class="alert alert-danger" style="position:relative; top:355px; left:840px; width: 200px; height: 15px; background-color:transparent; color: red;"><b><%= messagePass %></b></div>
+		<% } %>
+		<div id="container_register">
+
+			<form action="/register" method="post" style="color:white;">
+				<input type="text" name="user_register" style="position:relative; width: 83%; height: 15px; background-color:transparent; border:none; opacity:0.5;"><br><br><br>
+				<input type="password" name="pass_register" style="position:relative; top:-7px; width: 83%; height: 15px; background-color:transparent; border:none; opacity:0.5;"><br><br><br>
+				<input type="text" name="email_register" style="position:relative; top:-12px; width: 83%; height: 15px; background-color:transparent; border:none; opacity:0.5;"><br>
+				<input type="checkbox" name="license" style="position:relative; top: -9px; left: -5px; width:12px; height:12px;"><br><br>
+				<input type="submit" value="register" style="position:relative; top:-20px; left: 28px; width:117px; height:40px; opacity:0;">
+			</form>
+		</div>	
+	</div>
+</body>

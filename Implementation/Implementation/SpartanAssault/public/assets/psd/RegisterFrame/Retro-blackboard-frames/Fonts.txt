@@ -1,0 +1,10 @@
+Fonts used in this design;
+
+Font: Alex Brush, 
+Author: TypeSETit, 
+Url: http://www.fontsquirrel.com/fonts/alex-brush; 
+
+Font: CAC Champagne, 
+Author: American Greetings Corporation, 
+Url: http://www.fontsquirrel.com/fonts/CAC-Champagne; 
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="css/canvas_style.css" media="screen" />
+<link rel="import" href="work.html">
+<title>Spartan Assault</title>
+
+</head>
+<body>
+	<div id="container">
+		<div id="west_banner">
+			<div id="overview" class="buttons">Overview</div>
+			<div id="objectives" class="buttons">Objectives</div>
+			<div id="guild" class="buttons">Guild</div>
+			<div id="work" class="buttons">Work</div>
+			<div id="colosseum" class="buttons">Colosseum</div>
+			<div id="training" class="buttons">Training</div>
+			<div id="top" class="buttons">Top</div>
+			
+			<div id="west_banner_south">
+				<div id="left_button" class="buttons"></div>
+				<div id="right_button" class="buttons"></div>
+				<div id="weaponsmith" class="buttons">Weaponsmith</div>
+				<div id="armoursmith" class="buttons">Armoursmith</div>
+				<div id="goodsMerchant" class="buttons">Goods Merchant</div>
+				<div id="crafting" class="buttons">Crafting</div>
+				<div id="upgrade" class="buttons">Upgrade</div>
+				<div id="market" class="buttons">Market</div>
+			</div>
+		</div>
+		<div id="canvas"></div>
+	</div>
+	
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+	<script type="text/javascript" language="javascript">
+
+		$(document).ready(function() {
+<<<<<<< HEAD
+			$("#overview, #objectives, #guild, #work, #colosseum, #training, #top, #weaponsmith, #armoursmith, #goodsMerchant, #crafting, #upgrade, #market").click(function(event){
+				$("#canvas").html("<iframe src='"+$(this).attr('id')+".html' style=\"width:1073px; height:528px;\"></iframe>");
+				var name = $(this).attr('id');
+				if(name=="overview" || name=="objectives" || name=="guild" || name=="work" || name=="colosseum" || name=="training" || name=="top")
+					{
+					$('#weaponsmith').removeClass('butonActiv');
+					$('#armoursmith').removeClass('butonActiv');
+					$('#goodsMerchant').removeClass('butonActiv');
+					$('#crafting').removeClass('butonActiv');
+					$('#upgrade').removeClass('butonActiv');
+					$('#market').removeClass('butonActiv');
+					}
+				$(this).siblings().removeClass('butonActiv');
+				$(this).parent().siblings().removeClass('butonActiv');
+				$(this).addClass('butonActiv');
+=======
+			$("#work").click(function(event){
+				//var html = document.open('work.html');
+				//document.getElementById('canvas').innerHTML = html;
+				$("#canvas").html("<iframe src='work.html'></iframe>");  
+>>>>>>> ab4fe68053706b9f0300146bd6066cb2c766a37b
+			});
+			
+			$('#left_button').click(function(){
+				$("#west_banner_south").removeClass('addBackgroundRight');
+				$("#right_button").removeClass('activeButton');
+				$("#left_button").addClass('activeButton');
+				
+				$("#weaponsmith").show();
+				$("#armoursmith").show();
+				$("#goodsMerchant").show();
+				$("#crafting").show();
+				$("#upgrade").show();
+				$("#market").show();
+				
+				$("#west_banner_south").addClass('addBackgroundLeft');
+			});
+			
+			$('#right_button').click(function(){
+				$("#west_banner_south").removeClass('addBackgroundLeft');
+				$("#left_button").removeClass('activeButton');
+				$("#right_button").addClass('activeButton');
+				
+				$("#weaponsmith").hide();
+				$("#armoursmith").hide();
+				$("#goodsMerchant").hide();
+				$("#crafting").hide();
+				$("#upgrade").hide();
+				$("#market").hide();
+				
+				$('#west_banner_south').addClass('addBackgroundRight');
+			});
+			
+         });
+		 
+    </script>
+
+</body>
+</html>
