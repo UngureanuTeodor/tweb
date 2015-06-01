@@ -3,6 +3,9 @@
 		display:block;
 	}
 	
+	.drop-target {
+	}
+	
 	#container{
 		position: absolute;
 		top:0;
@@ -241,6 +244,7 @@
 		left:796px;
 		width:72px;
 		height:110px;
+		background-color:red;
 	}
 	
 	#shield {
