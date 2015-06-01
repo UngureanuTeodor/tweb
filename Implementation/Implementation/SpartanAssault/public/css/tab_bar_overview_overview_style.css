@@ -9,5 +9,284 @@
 		left:0;
 		width:1053px;
 		height:458px;
-		background-color:red;
+		background-color:rgb(224,184,52);
+		opacity:0.1;
+	}
+	
+	#title {
+		position: absolute;
+		background-image:url(../assets/title.png);
+		background-repeat:no-repeat;
+		background-position:center;
+		background-size:contain;
+		top:10px;
+		left:446.5px;
+		width:160px;
+		height:50px;
+		
+		font-size:12px;
+		color:white;
+		text-align: center;
+		vertical-align: middle;
+		line-height: 50px; 
+		font-weight: 900;
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+		user-select: none;
+	}
+	
+	#profile_picture {
+		position: absolute;
+		top:70px;
+		left:446.5px;
+		width:160px;
+		height:200px;
+		background-color:white;
+		background-image:url(../assets/gladiator_profile_picture.png);
+		background-repeat:no-repeat;
+		background-position:center;
+		background-size:cover;
+	}
+	
+	#strenghts {
+		background-image:url(../assets/strengths.png);
+		background-repeat:no-repeat;
+		background-position:center;
+		background-size:contain;
+		position: absolute;
+		top:290px;
+		left:406.5px;
+		width:240px;
+		height:150px;
+		background-color:rgb(186,170,126);
+	}
+	
+	#equipment {
+		background-image:url(../assets/equipment.jpg);
+		background-repeat:no-repeat;
+		background-position:center;
+		background-size:cover;
+		position: absolute;
+		top:70px;
+		left:680px;
+		width:300px;
+		height:320px;
+	}
+	
+	#inventory1 {
+		background-color:rgb(186,170,126);
+		background-image:url(../assets/inventory.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
+		background-size:contain;
+		position: absolute;
+		top:250px;
+		left:75px;
+		width:300px;
+		height:140px;
+	}
+	
+	#inventory2 {
+		background-color:rgb(186,170,126);
+		background-image:url(../assets/inventory.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
+		background-size:contain;
+		position: absolute;
+		top:250px;
+		left:75px;
+		width:300px;
+		height:140px;
+	}
+	
+	#inventory3 {
+		background-color:rgb(186,170,126);
+		background-image:url(../assets/inventory.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
+		background-size:contain;
+		position: absolute;
+		top:250px;
+		left:75px;
+		width:300px;
+		height:140px;
+	}
+	
+	#inventory4 {
+		background-color:rgb(186,170,126);
+		background-image:url(../assets/inventory.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
+		background-size:contain;
+		position: absolute;
+		top:250px;
+		left:75px;
+		width:300px;
+		height:140px;
+	}
+	
+	#inventory5 {
+		background-color:rgb(186,170,126);
+		background-image:url(../assets/inventory.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
+		background-size:contain;
+		position: absolute;
+		top:250px;
+		left:75px;
+		width:300px;
+		height:140px;
+	}
+	
+	#inventory_description {
+		background-color:rgb(186,170,126);
+		background-image:url(../assets/inventory_description.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
+		background-size:contain;
+		position: absolute;
+		top:70px;
+		left:75px;
+		width:300px;
+		height:130px;
+	}
+	
+	#inventory_menu_bar {
+		position: absolute;
+		top:220px;
+		left:90px;
+		width:270px;
+		height:30px;
+	}
+	
+	.alignCenter{
+		font-size:12px;
+		color:white;
+		text-align: center;
+		vertical-align: middle;
+		line-height: 30px; 
+		font-weight: 900;
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+		user-select: none;
+		opacity:0.6;
+	}
+	
+	#inventory_menu_bar_button1 {
+		background-color:rgb(136,114,47);
+		position: absolute;
+		top:220px;
+		left:90px;
+		width:30px;
+		height:30px;
+	}
+	
+	#inventory_menu_bar_button2 {
+		background-color:rgb(136,114,47);
+		position: absolute;
+		top:220px;
+		left:125px;
+		width:30px;
+		height:30px;
+	}
+	
+	#inventory_menu_bar_button3 {
+		background-color:rgb(136,114,47);
+		position: absolute;
+		top:220px;
+		left:160px;
+		width:30px;
+		height:30px;
+	}
+	
+	#inventory_menu_bar_button4 {
+		background-color:rgb(136,114,47);
+		position: absolute;
+		top:220px;
+		left:195px;
+		width:30px;
+		height:30px;
+	}
+	
+	#inventory_menu_bar_button5 {
+		background-color:rgb(136,114,47);
+		position: absolute;
+		top:220px;
+		left:230px;
+		width:30px;
+		height:30px;
+	}
+	
+	#helmet {
+		position: absolute;
+		top:89px;
+		left:796px;
+		width:72px;
+		height:72px;
+	}
+	
+	#weapon {
+		position: absolute;
+		top:170px;
+		left:705px;
+		width:72px;
+		height:110px;
+	}
+	
+	#chest {
+		position: absolute;
+		top:170px;
+		left:796px;
+		width:72px;
+		height:110px;
+	}
+	
+	#shield {
+		position: absolute;
+		top:170px;
+		left:888px;
+		width:72px;
+		height:110px;
+	}
+	
+	#gloves {
+		position: absolute;
+		top:298px;
+		left:705px;
+		width:72px;
+		height:72px;
+	}
+	
+	#boots {
+		position: absolute;
+		top:298px;
+		left:796px;
+		width:72px;
+		height:72px;
+	}
+	
+	#magic1 {
+		position: absolute;
+		top:127px;
+		left:888px;
+		width:35px;
+		height:35px;
+	}
+	
+	#magic2 {
+		position: absolute;
+		top:298px;
+		left:888px;
+		width:35px;
+		height:35px;
+	}
+	
+	#magic3 {
+		position: absolute;
+		top:298px;
+		left:926px;
+		width:35px;
+		height:35px;
 	}

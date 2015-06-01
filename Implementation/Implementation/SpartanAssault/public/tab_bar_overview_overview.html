@@ -9,7 +9,91 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body>
-	<div id="container">
-	</div>
+	<div id="container"></div>
+	<div id="title">Ungureanu Teodor</div>
+	<div id="profile_picture"></div>
+	<div id="strenghts"></div>
+	<div id="equipment"></div>
+	
+	<div id="inventory1"></div>
+	<div id="inventory2"></div>
+	<div id="inventory3"></div>
+	<div id="inventory4"></div>
+	<div id="inventory5"></div>
+	
+	<div id="inventory_description"></div>
+	<div id="inventory_menu_bar"></div>
+	<div id="inventory_menu_bar_button1" class="alignCenter">I</div>
+	<div id="inventory_menu_bar_button2" class="alignCenter">II</div>
+	<div id="inventory_menu_bar_button3" class="alignCenter">III</div>
+	<div id="inventory_menu_bar_button4" class="alignCenter">IV</div>
+	<div id="inventory_menu_bar_button5" class="alignCenter">V</div>
+	
+	<div id="helmet"></div>
+	<div id="weapon"></div>
+	<div id="chest"></div>
+	<div id="shield"></div>
+	<div id="gloves"></div>
+	<div id="boots"></div>
+	<div id="magic1"></div>
+	<div id="magic2"></div>
+	<div id="magic3"></div>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+	<script type="text/javascript" language="javascript">
+
+		$(document).ready(function() {
+			
+			$("#inventory1").show();
+			$("#inventory2").hide();
+			$("#inventory3").hide();
+			$("#inventory4").hide();
+			$("#inventory5").hide();
+			
+			$("#inventory_menu_bar_button1").click(function(event){
+				$("#inventory1").show();
+				$("#inventory2").hide();
+				$("#inventory3").hide();
+				$("#inventory4").hide();
+				$("#inventory5").hide();
+			});
+			
+			$("#inventory_menu_bar_button2").click(function(event){
+				$("#inventory1").hide();
+				$("#inventory2").show();
+				$("#inventory3").hide();
+				$("#inventory4").hide();
+				$("#inventory5").hide();
+			});
+			
+			$("#inventory_menu_bar_button3").click(function(event){
+				$("#inventory1").hide();
+				$("#inventory2").hide();
+				$("#inventory3").show();
+				$("#inventory4").hide();
+				$("#inventory5").hide();
+			});
+			
+			$("#inventory_menu_bar_button4").click(function(event){
+				$("#inventory1").hide();
+				$("#inventory2").hide();
+				$("#inventory3").hide();
+				$("#inventory4").show();
+				$("#inventory5").hide();
+			});
+			
+			$("#inventory_menu_bar_button5").click(function(event){
+				$("#inventory1").hide();
+				$("#inventory2").hide();
+				$("#inventory3").hide();
+				$("#inventory4").hide();
+				$("#inventory5").show();
+			});
+			
+         });
+		 
+    </script>
+	
 </body>
 </html>
