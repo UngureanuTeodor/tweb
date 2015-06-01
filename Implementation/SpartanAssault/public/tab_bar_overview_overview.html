@@ -15,7 +15,8 @@
 	<div id="strenghts"></div>
 	<div id="equipment"></div>
 	
-	<div id="inventory1">	<div id="test" class="draggable drag-drop" style="z-index:100; position:relative; background-color:white; width:20px; height:20px;"></div>	
+	<div id="inventory1">
+		<div id="test" class="draggable drag-drop" style="z-index:100; position:relative; background-color:white; width:20px; height:20px;"></div>	
 	</div>
 	
 	<div id="inventory2"></div>
@@ -133,13 +134,14 @@
 	      endOnly: true
 	});
     
-	interact('#chest').dropzone({
-	    accept: '#test',
+	interact("#chest").dropzone({
+	    accept: "#test",
 	    overlap: 1,
 	    ondropactivate: function (event) {
 	        event.target.classList.add('drop-active');
 	    },
 	    ondragenter: function (event) {
+
 	        var draggableElement = event.relatedTarget,
 	            dropzoneElement = event.target;
 	        dropzoneElement.classList.add('drop-target');
@@ -152,7 +154,7 @@
 		
 		    event.draggable.snap({
 		      anchors: [ dropCenter ]
-		    });  
+		    });
 	    },
 	    ondragleave: function (event) {
 	        var draggableElement = event.relatedTarget,
