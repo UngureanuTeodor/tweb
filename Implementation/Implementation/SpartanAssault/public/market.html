@@ -10,5 +10,43 @@
 </head>
 <body>
 	<div id="container">
+		<div id="tab_bar">
+			<div id="tab_bar_market_overview">Ma_Overview</div>
+			<div id="tab_bar_market_statistics">Ma_Statistics</div>
+			<div id="tab_bar_market_victories">Ma_Victories</div>
+		</div>
+		<div id="canvas">	
+		</div>
 	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+	<script type="text/javascript" language="javascript">
+
+		$(document).ready(function() {
+			$("#tab_bar_market_overview, #tab_bar_market_statistics, #tab_bar_market_victories").click(function(event){
+				$("#canvas").html("<iframe src='"+$(this).attr('id')+".html' style=\"width:1053px; height:458px;\" frameborder=\"0\"></iframe>");
+			});
+
+			$("#tab_bar_market_overview").click(function(event){
+				$("#tab_bar_market_overview").css({"z-index":"3"});
+				$("#tab_bar_market_statistics").css({"z-index":"2"});
+				$("#tab_bar_market_victories").css({"z-index":"1"});
+			});
+			
+			$("#tab_bar_market_statistics").click(function(event){
+				$("#tab_bar_market_overview").css({"z-index":"1"});
+				$("#tab_bar_market_statistics").css({"z-index":"3"});
+				$("#tab_bar_market_victories").css({"z-index":"1"});
+			});
+			
+			$("#tab_bar_market_victories").click(function(event){
+				$("#tab_bar_market_overview").css({"z-index":"1"});
+				$("#tab_bar_market_statistics").css({"z-index":"2"});
+				$("#tab_bar_market_victories").css({"z-index":"3"});
+			});
+			
+         });
+		 
+    </script>
 </body>
