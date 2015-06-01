@@ -11,6 +11,7 @@ module.exports = function(app, passport) {
 	app.get('/terms', function(req, res) {
 		res.render('terms.ejs');
 	});
+	
     // app.post('/login', do all our passport stuff here);
 
     app.post('/register', passport.authenticate('local-register', {
@@ -19,6 +20,10 @@ module.exports = function(app, passport) {
 		failureFlash : true
 	}));
 
+	app.get('/success', function(req, res) {
+		res.render('success.ejs');
+	});
+	
     /*app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
             user : req.user // get the user out of session and pass to template
