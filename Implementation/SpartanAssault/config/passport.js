@@ -44,7 +44,7 @@ module.exports = function(passport) {
 				if (user.length > 0) {
 					return done(null, false, req.flash('messageEmail', 'The username is already taken.'));
 				}
-			});    
+			});
 			
 			if(pass_register.length < 8 || pass_register.length > 20) {
 				return done(null, false, req.flash('messagePass', 'The password needs to have between 8-20 characters.'));
@@ -86,4 +86,32 @@ module.exports = function(passport) {
 
     }));
 
+	passport.use('local-login', new LocalStrategy({
+        usernameField : 'user_login',
+        passwordField : 'pass_login',
+        passReqToCallback : true 
+    },
+	function(req, user_login, pass_login, done) {
+		var User = req.models.user;
+		
+		User.find({ username :  user_login }, function(err, user) {
+				
+				if (err) {
+					return done(err);
+				}
+				
+				if (user.length == 0) {
+					return done(null, false, req.flash('messageLoginUser', 'The username does not exist.'));
+				}
+				if(!user[0].checkPass(pass_login)) {
+					return done(null, false, req.flash('messageLoginPass', 'The password does not match.'));
+				}
+				
+				req.session.username = user[0].username;
+				req.session.gender = user[0].gender;
+				req.session.origin = user[0].origin;
+
+				return done(null, user);
+			});
+	}));
 };
