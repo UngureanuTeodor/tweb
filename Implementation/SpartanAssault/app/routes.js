@@ -101,7 +101,11 @@ module.exports = function(app, passport) {
 	});
 	
     app.get('/canvas', isLoggedIn, function(req, res) {
+<<<<<<< HEAD
         res.render('canvas.ejs')
+=======
+        res.render('canvas.ejs');
+>>>>>>> ae7427915b3a6a83a48b8bdb9060ba8fc3e3ae7b
     });
 
     app.get('/logout', function(req, res) {
