@@ -68,7 +68,7 @@ module.exports = function(app, passport) {
 			res.render('origin.ejs', { messageOrigin : req.flash('messageOrigin')});
 		}
 		else {
-			res.redirect('/overview');
+			res.redirect('/canvas');
 		}
 	});
 	
@@ -92,7 +92,7 @@ module.exports = function(app, passport) {
 				}
 				else console.log('Error: '+ err);
 			});
-			res.redirect('/overview');
+			res.redirect('/canvas');
 		}
 		else {
 			res.redirect('/origin');
@@ -100,11 +100,9 @@ module.exports = function(app, passport) {
 		}
 	});
 	
-    /*app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user : req.user // get the user out of session and pass to template
-        });
-    });*/
+    app.get('/canvas', isLoggedIn, function(req, res) {
+        res.render('canvas.ejs')
+    });
 
     app.get('/logout', function(req, res) {
         req.logout();

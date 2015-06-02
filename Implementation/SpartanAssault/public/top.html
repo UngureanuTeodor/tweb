@@ -11,11 +11,10 @@
 <body>
 	<div id="container">
 		<div id="tab_bar">
-			<div id="tab_bar_top_overview">To_Overview</div>
-			<div id="tab_bar_top_statistics">To_Statistics</div>
-			<div id="tab_bar_top_victories">To_Victories</div>
+			<div id="tab_bar_top_top100players">Top 100 Players</div>
+			<div id="tab_bar_top_top100guilds">Top 100 Guilds</div>
 		</div>
-		<div id="canvas">	
+		<div id="canvas">
 		</div>
 	</div>
 
@@ -24,29 +23,20 @@
 	<script type="text/javascript" language="javascript">
 
 		$(document).ready(function() {
-			$("#tab_bar_top_overview, #tab_bar_top_statistics, #tab_bar_top_victories").click(function(event){
-				$("#canvas").html("<iframe src='"+$(this).attr('id')+".html' style=\"width:1053px; height:458px;\" frameborder=\"0\"></iframe>");
+			$("#tab_bar_top_top100players, #tab_bar_top_top100guilds").click(function(event){
+				$("#canvas").html("<iframe src='"+$(this).attr('id')+".html' scrolling=\"no\" seamless=\"seamless\" style=\"width:1053px; height:458px;\" frameborder=\"0\"></iframe>");
 			});
 
-			$("#tab_bar_top_overview").click(function(event){
-				$("#tab_bar_top_overview").css({"z-index":"3"});
-				$("#tab_bar_top_statistics").css({"z-index":"2"});
-				$("#tab_bar_top_victories").css({"z-index":"1"});
+			$("#tab_bar_top_top100players").click(function(event){
+				$("#tab_bar_top_top100players").css({"z-index":"2"});
+				$("#tab_bar_top_top100guilds").css({"z-index":"1"});
 			});
 			
-			$("#tab_bar_top_statistics").click(function(event){
-				$("#tab_bar_top_overview").css({"z-index":"1"});
-				$("#tab_bar_top_statistics").css({"z-index":"3"});
-				$("#tab_bar_top_victories").css({"z-index":"1"});
-			});
-			
-			$("#tab_bar_top_victories").click(function(event){
-				$("#tab_bar_top_overview").css({"z-index":"1"});
-				$("#tab_bar_top_statistics").css({"z-index":"2"});
-				$("#tab_bar_top_victories").css({"z-index":"3"});
+			$("#tab_bar_top_top100guilds").click(function(event){
+				$("#tab_bar_top_top100players").css({"z-index":"1"});
+				$("#tab_bar_top_top100guilds").css({"z-index":"2"});
 			});
 			
          });
-		 
     </script>
 </body>

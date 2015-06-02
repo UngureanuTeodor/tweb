@@ -111,7 +111,22 @@
 	            target.setAttribute('data-y', y);
 	        },
 	        onend: function (event) {
-	            var textEl = event.target.querySelector('p');
+	            var dropRect = interact.getElementRect(event.target);
+		        var stanga = dropRect.left;
+				var sus = dropRect.top;
+				
+				var chestPosition=796;
+				var pozitieFinalaStanga=chestPosition-stanga;
+				
+				var chestPositionTop=170;
+				var pozitieFinalaSus=chestPositionTop-sus;
+
+				//var position = $("#chest").offset();
+				//$("#test").css(position);
+				
+				$("#test").css({"position":"absolute", "left":pozitieFinalaStanga, "top":pozitieFinalaSus, "z-index":"5"});
+				
+				var textEl = event.target.querySelector('p');
 	            
 	            textEl && (textEl.textContent =
 	                'moved a distance of '

@@ -10,13 +10,12 @@
 	<body>
 		<div id="container">
 			<% if (messageLoginUser.length > 0) { %>
-					<div class="alert alert-danger" style="background-color: rgba(243,217,131,0.5); position:relative; top:122px; left:1290px; width: 200px; height: 20px; color: red;"><b><%= messageLoginUser %></b></div>
+					<div class="alert alert-danger" style="background-color: rgba(243,217,131,0.5); position:relative; top:114px; left:1168px; width: 200px; height: 20px; color: red;"><b><%= messageLoginUser %></b></div>
 			<% } %>
 			<% if (messageLoginPass.length > 0) { %>
-					<div class="alert alert-danger" style="background-color: rgba(243,217,131,0.5); position:relative; top:162px; left:1290px; width: 200px; height: 40px; color: red;"><b><%= messageLoginPass %></b></div>
+					<div class="alert alert-danger" style="background-color: rgba(243,217,131,0.5); position:relative; top:146px; left:1168px; width: 200px; height: 40px; color: red;"><b><%= messageLoginPass %></b></div>
 			<% } %>
 			<div id="container_login">
-				
 				<form action="/login" method="post" style="color:white;">
 					<input type="text" name="user_login" style="position:relative; top:33px; left: 22px; width: 82%; height: 18px; background-color:transparent; border:none; opacity:0.5;"><br><br><br>
 					<input type="password" name="pass_login" style="position:relative; top:20px; left: 22px; width: 82%; height: 18px; background-color:transparent; border:none; opacity:0.5;"><br><br><br>

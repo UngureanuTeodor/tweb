@@ -30,31 +30,13 @@
 		user-select: none;
 	}
 	
-	#tab_bar_colosseum_overview{
+	#tab_bar_colosseum{
 		position:absolute;
 		left:50px;
 		width:100px;
 		height:100%;
 		background-image:url(../assets/tab_buttons.png);
 		z-index:3;
-	}
-	
-	#tab_bar_colosseum_statistics{
-		position:absolute;
-		left:140px;
-		width:100px;
-		height:100%;
-		background-image:url(../assets/tab_buttons.png);
-		z-index:2;
-	}
-	
-	#tab_bar_colosseum_victories{
-		position:absolute;
-		left:230px;
-		width:100px;
-		height:100%;
-		background-image:url(../assets/tab_buttons.png);
-		z-index:1;
 	}
 	
 	#canvas{

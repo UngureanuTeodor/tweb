@@ -30,7 +30,7 @@
 		user-select: none;
 	}
 	
-	#tab_bar_objectives_overview{
+	#tab_bar_objectives_missions{
 		position:absolute;
 		left:50px;
 		width:100px;
@@ -39,22 +39,13 @@
 		z-index:3;
 	}
 	
-	#tab_bar_objectives_statistics{
+	#tab_bar_objectives_achievements{
 		position:absolute;
 		left:140px;
 		width:100px;
 		height:100%;
 		background-image:url(../assets/tab_buttons.png);
 		z-index:2;
-	}
-	
-	#tab_bar_objectives_victories{
-		position:absolute;
-		left:230px;
-		width:100px;
-		height:100%;
-		background-image:url(../assets/tab_buttons.png);
-		z-index:1;
 	}
 	
 	#canvas{

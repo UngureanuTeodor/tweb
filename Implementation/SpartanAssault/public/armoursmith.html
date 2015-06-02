@@ -11,9 +11,8 @@
 <body>
 	<div id="container">
 		<div id="tab_bar">
-			<div id="tab_bar_armoursmith_overview">Ar_Overview</div>
-			<div id="tab_bar_armoursmith_statistics">Ar_Statistics</div>
-			<div id="tab_bar_armoursmith_victories">Ar_Victories</div>
+			<div id="tab_bar_armoursmith">ArmourSmith</div>
+			
 		</div>
 		<div id="canvas">	
 		</div>
@@ -24,26 +23,13 @@
 	<script type="text/javascript" language="javascript">
 
 		$(document).ready(function() {
-			$("#tab_bar_armoursmith_overview, #tab_bar_armoursmith_statistics, #tab_bar_armoursmith_victories").click(function(event){
+			$("#tab_bar_armoursmith").click(function(event){
 				$("#canvas").html("<iframe src='"+$(this).attr('id')+".html' style=\"width:1053px; height:458px;\" frameborder=\"0\"></iframe>");
 			});
 
-			$("#tab_bar_armoursmith_overview").click(function(event){
-				$("#tab_bar_armoursmith_overview").css({"z-index":"3"});
-				$("#tab_bar_armoursmith_statistics").css({"z-index":"2"});
-				$("#tab_bar_armoursmith_victories").css({"z-index":"1"});
-			});
-			
-			$("#tab_bar_armoursmith_statistics").click(function(event){
-				$("#tab_bar_armoursmith_overview").css({"z-index":"1"});
-				$("#tab_bar_armoursmith_statistics").css({"z-index":"3"});
-				$("#tab_bar_armoursmith_victories").css({"z-index":"1"});
-			});
-			
-			$("#tab_bar_armoursmith_victories").click(function(event){
-				$("#tab_bar_armoursmith_overview").css({"z-index":"1"});
-				$("#tab_bar_armoursmith_statistics").css({"z-index":"2"});
-				$("#tab_bar_armoursmith_victories").css({"z-index":"3"});
+			$("#tab_bar_armoursmith").click(function(event){
+				$("#tab_bar_armoursmith").css({"z-index":"1"});
+			;
 			});
 			
          });

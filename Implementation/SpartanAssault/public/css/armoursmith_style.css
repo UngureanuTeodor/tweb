@@ -30,7 +30,7 @@
 		user-select: none;
 	}
 	
-	#tab_bar_armoursmith_overview{
+	#tab_bar_armoursmith{
 		position:absolute;
 		left:50px;
 		width:100px;
@@ -39,23 +39,6 @@
 		z-index:3;
 	}
 	
-	#tab_bar_armoursmith_statistics{
-		position:absolute;
-		left:140px;
-		width:100px;
-		height:100%;
-		background-image:url(../assets/tab_buttons.png);
-		z-index:2;
-	}
-	
-	#tab_bar_armoursmith_victories{
-		position:absolute;
-		left:230px;
-		width:100px;
-		height:100%;
-		background-image:url(../assets/tab_buttons.png);
-		z-index:1;
-	}
 	
 	#canvas{
 		position:relative;
