@@ -63,7 +63,6 @@
 	#overview, #objectives, #guild, #work, #colosseum, #training, #top,
 	#weaponsmith, #armoursmith, #goodsMerchant, #crafting, #upgrade, #market,
 	#left_button, #right_button, #aux .buttons{
-		cursor: pointer;
 		position:relative;
 		width: 100px;
 		height: 24px;
