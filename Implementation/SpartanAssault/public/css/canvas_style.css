@@ -1,0 +1,148 @@
+
+	body{
+		display:block;
+		background-color:black;
+	}
+	
+	#container{
+		background-image:url(../assets/canvas.png);
+		background-repeat: no-repeat;
+		background-position: fixed;
+		background-color:black;
+		position: absolute;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+		background-size:cover;
+	}
+	
+	#west_banner{
+		position: absolute;
+		top:115px;
+		left:86px;
+		width:122px;
+		height:515px;
+	}
+	
+	#west_banner .butonActiv {
+		background-color: rgb(224,184,52);
+	}
+	
+	.addBackgroundLeft {
+		background-image:url(../assets/yellow_frame_left.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
+	}
+	
+	.addBackgroundRight {
+		background-image:url(../assets/yellow_frame_right.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
+	}
+	
+	.activeButton {
+		background-color:rgb(224,184,52) !important;
+	}
+	
+	#west_banner_south {
+		position: absolute;
+		top:213px;
+		width:122px;
+		height:255px;
+	}
+	
+	#canvas{
+		position:absolute;
+		top:108px;
+		left:208px;
+		width:1073px;
+		height:528px;
+	}
+	
+	#overview, #objectives, #guild, #work, #colosseum, #training, #top,
+	#weaponsmith, #armoursmith, #goodsMerchant, #crafting, #upgrade, #market,
+	#left_button, #right_button, #aux .buttons{
+		position:relative;
+		width: 100px;
+		height: 24px;
+		left: 11px;
+		background-color:rgb(26,0,0);
+		opacity:0.7;
+		font-size:12px;
+		color:white;
+		text-align: center;
+		vertical-align: middle;
+		line-height: 24px; 
+		font-weight: 900;
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+		user-select: none;
+	}
+	
+	#overview{
+		top:0px;
+	}
+	
+	#objectives{
+		top:8px;
+	}
+	
+	#guild{
+		top:16px;
+	}
+	
+	#work{
+		top:24px;
+	}
+	
+	#colosseum{
+		top:32px;
+	}
+	
+	#training{
+		top:40px;
+	}
+	
+	#top{
+		top:48px;
+	}
+	
+	#left_button{
+		top:14px;
+		width:40px;
+		height:40px;
+		left:14px;
+	}
+	
+	#right_button{
+		left:68px;
+		top:-26px;
+		width:40px;
+		height:40px;
+	}
+	
+	#weaponsmith{
+		top:-16px;
+	}
+	
+	#armoursmith{
+		top:-8px;
+	}
+	
+	#goodsMerchant{
+		top:0px;
+	}
+	
+	#crafting{
+		top:8px;
+	}
+	
+	#upgrade{
+		top:16px;
+	}
+	
+	#market{
+		top:24px;
+	}

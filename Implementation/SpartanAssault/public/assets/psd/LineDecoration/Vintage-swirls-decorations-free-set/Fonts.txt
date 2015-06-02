@@ -1,0 +1,5 @@
+FONTS:
+
+- Skinkin Sans by K-Type: http://www.fontsquirrel.com/fonts/sinkin-sans
+
+- Source Serif Pro by Adobe: http://www.fontsquirrel.com/fonts/source-serif-pro

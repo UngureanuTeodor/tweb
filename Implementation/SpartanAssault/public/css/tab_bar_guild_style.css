@@ -1,0 +1,46 @@
+
+	body{
+		display:block;
+	}
+	
+	#container{
+		position: absolute;
+		top:0;
+		left:0;
+		width:1053px;
+		height:458px;
+		background-color:rgba(224,184,52, 0.1);
+	}
+	
+	#guildImage{
+		background-image:url(../assets/guildImage.png);
+		background-repeat:no-repeat;
+		background-size:contain;
+		position:absolute;
+		background-color:green;
+		background-size:cover;
+		top:40px;
+		left:40px;
+		width:200px;
+		height:190px;
+	}
+	
+	#guildDescription{
+		background-color:green;
+		position:absolute;
+		top:250px;
+		left:40px;
+		width=200px;
+		height:190px;
+	}
+	
+	#guildMembers{
+		background-image:url(../assets/table.png);
+		background-repeat:no-repeat;
+		background-size:cover;
+		position:absolute;
+		top:40px;
+		left:400px;
+		width:580px;
+		height:200px;
+	}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="css/overview_style.css" media="screen" />
+<title>Spartan Assault</title>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+	<div id="container">
+		<div id="tab_bar">
+			<div id="tab_bar_overview_overview">Overview</div>
+			<div id="tab_bar_overview_statistics">Statistics</div>
+			<div id="tab_bar_overview_victories">Victories</div>
+		</div>
+		<div id="canvas">
+		</div>
+	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="/node_modules/interact.js/interact.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.4/interact.min.js"></script>
+	
+	<script type="text/javascript" language="javascript">
+
+		$(document).ready(function() {
+			$("#tab_bar_overview_overview, #tab_bar_overview_statistics, #tab_bar_overview_victories").click(function(event){
+				$("#canvas").html("<iframe src='"+$(this).attr('id')+".html' style=\"width:1053px; height:458px;\" frameborder=\"0\"></iframe>");
+			});
+
+			$("#tab_bar_overview_overview").click(function(event){
+				$("#tab_bar_overview_overview").css({"z-index":"3"});
+				$("#tab_bar_overview_statistics").css({"z-index":"2"});
+				$("#tab_bar_overview_victories").css({"z-index":"1"});
+			});
+			
+			$("#tab_bar_overview_statistics").click(function(event){
+				$("#tab_bar_overview_overview").css({"z-index":"1"});
+				$("#tab_bar_overview_statistics").css({"z-index":"3"});
+				$("#tab_bar_overview_victories").css({"z-index":"1"});
+			});
+			
+			$("#tab_bar_overview_victories").click(function(event){
+				$("#tab_bar_overview_overview").css({"z-index":"1"});
+				$("#tab_bar_overview_statistics").css({"z-index":"2"});
+				$("#tab_bar_overview_victories").css({"z-index":"3"});
+			});
+			
+         });
+		 	 
+    </script>
+</body>

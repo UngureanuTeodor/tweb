@@ -1,0 +1,43 @@
+
+	body{
+		display:block;
+	}
+	
+	#container{
+		position: absolute;
+		top:0;
+		left:0;
+		width:1053px;
+		height:458px;
+		background-color:rgba(224,184,52, 0.1);
+	}
+	
+	#table {
+		background-color:rgb(224,184,52);
+		position: absolute;
+		top:50px;
+		left:110px;
+		width:800px;
+		height:100px;
+		overflow:auto;
+	}
+	
+	#tablediv {
+		position: absolute;
+		top:0px;
+		left:0px;
+		width:1053px;
+		height:458px;
+		overflow:auto;
+	}
+	
+	table, tr, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	
+	tr,th, td {
+		padding: 5px;
+		text-align: center;
+	}
+	
