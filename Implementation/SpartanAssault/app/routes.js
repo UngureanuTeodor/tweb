@@ -96,16 +96,89 @@ module.exports = function(app, passport) {
 		}
 		else {
 			res.redirect('/origin');
-			req.flash('messageOrigin', 'You have to pick a your origins.');
+			req.flash('messageOrigin', 'You have to pick your origins.');
 		}
 	});
 	
-    app.get('/canvas', isLoggedIn, function(req, res) {
-        res.render('canvas.ejs')
+    app.get('/canvas', function(req, res) {
+		if(req.isAuthenticated())
+			res.render('canvas.ejs');
+		else res.redirect('/');
     });
+	
+	app.get('/title', function(req, res) {
+		res.writeHead(200, {"Content-Type": "text/plain"});
+		res.end(req.session.username);
+	});
+	
+	app.get('/items', function(req, res) {
+		var equipment = req.models.equipment;
+		var armor = req.models.armour;
+		var helm_ID;
+		
+		equipment.find({ userID : req.session.user_id }, function(err, equip) {
+			if(!err) {
+				armor.find({ armourID : equip[0].helmetID}, function(err, helm) {
+					if(!err) {
+						console.log('Helm: ' + helm[0].armourName);
+						res.writeHead(200, {"Content-Type": "text/plain"});
+						res.end(helm[0].armourName);
+					}
+					else console.log('Helm error');
+				});
+			}
+			else console.log('Error: '+ err);
+		});
+	});
+	
+	app.get('/overview', function(req, res) {
+		var json_text = "{ \"username\" : \""+ req.session.username + "\", \"helmet\" : \"";
+		var equipment = req.models.equipment;
+		var armor = req.models.armour;
+		var weap = req.models.weapon;
 
-    app.get('/logout', function(req, res) {
-        req.logout();
+		equipment.find({ userID : req.session.user_id }, function(err, equip) {
+			if(!err) {
+				armor.find({ armourID : equip[0].helmetID}, function(err, helm) {
+					if(!err) {
+						json_text = json_text + helm[0].armourName + "\", \"chest\" : \"";
+						armor.find({ armourID : equip[0].chestID}, function(err, chest) {
+							if(!err) {
+								json_text = json_text + chest[0].armourName + "\", \"gloves\" : \"";
+								armor.find({ armourID : equip[0].glovesID}, function(err, gloves) {
+									if(!err) {
+										json_text = json_text + gloves[0].armourName + "\", \"boots\" : \"";
+										armor.find({ armourID : equip[0].bootsID}, function(err, boots) {
+											if(!err) {
+												json_text = json_text + boots[0].armourName + "\", \"shield\" : \"";
+												armor.find({ armourID : equip[0].shieldID}, function(err, shield) {
+													if(!err) {
+														json_text = json_text + shield[0].armourName + "\", \"weapon\" : \"";
+														weap.find({ weaponID : equip[0].weaponID}, function(err, weapon) {
+															if(!err) {
+																json_text = json_text + weapon[0].weaponName + "\"}";
+																res.writeHead(200, {"Content-Type": "text/plain"});
+																res.end(json_text);
+															}
+														});
+													}
+												});
+											}
+										});
+									}
+								});
+							}
+						});
+					}
+					else console.log('Helm error');
+				});
+			}
+			else console.log('Error: '+ err);
+		});
+	});
+
+    app.post('/logout', function(req, res) {
+        req.session.destroy();
         res.redirect('/');
     });
 	

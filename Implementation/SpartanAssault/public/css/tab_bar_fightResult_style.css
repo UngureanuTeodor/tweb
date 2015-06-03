@@ -1,0 +1,117 @@
+
+	body{
+		display:block;
+	}
+	
+	#container{
+		position: absolute;
+		top:0;
+		left:0;
+		width:1053px;
+		height:458px;
+		background-color:rgba(224,184,52, 0.1);
+	}
+	
+	#winner{
+		background-image:url(../assets/winner.png);
+		background-repeat:no-repeat;
+		background-size:contain;
+		position:absolute;
+		--background-color:red;
+		background-size:cover;
+		top:20px;
+		left:350px;
+		width:300px;
+		height:50px;
+	}
+	
+	#characterTitle1{
+		background-image:url(../assets/characterTitle1.png);
+		background-repeat:no-repeat;
+		background-size:contain;
+		position:absolute;
+		--background-color:green;
+		background-size:cover;
+		top:100px;
+		left:250px;
+		width:150px;
+		height:70px;
+	}
+	
+		#characterTitle2{
+		background-image:url(../assets/characterTitle2.png);
+		background-repeat:no-repeat;
+		background-size:contain;
+		position:absolute;
+		--background-color:green;
+		background-size:cover;
+		top:100px;
+		left:600px;
+		width:150px;
+		height:70px;
+	}
+	
+		#characterImage1{
+		background-image:url(../assets/characterImage1.png);
+		background-repeat:no-repeat;
+		background-size:contain;
+		position:absolute;
+		--background-color:gray;
+		background-size:cover;
+		top:200px;
+		left:250px;
+		width:150px;
+		height:200px;
+	}
+	
+		#characterImage2{
+		background-image:url(../assets/characterImage2.png);
+		background-repeat:no-repeat;
+		background-size:contain;
+		position:absolute;
+		--background-color:gray;
+		background-size:cover;
+		top:200px;
+		left:600px;
+		width:150px;
+		height:200px;
+	}
+	
+		#characterStatus1{
+		background-image:url(../assets/characterStatus1.png);
+		background-repeat:no-repeat;
+		background-size:contain;
+		position:absolute;
+		--background-color:blue;
+		background-size:cover;
+		top:200px;
+		left:40px;
+		width:150px;
+		height:250px;
+	}
+	
+		#characterStatus2{
+		background-image:url(../assets/characterStatus2.png);
+		background-repeat:no-repeat;
+		background-size:contain;
+		position:absolute;
+		--background-color:blue;
+		background-size:cover;
+		top:200px;
+		left:810px;
+		width:150px;
+		height:250px;
+	}
+	
+		#reward{
+		background-image:url(../assets/reward.png);
+		background-repeat:no-repeat;
+		background-size:contain;
+		position:absolute;
+		--background-color:purple;
+		background-size:cover;
+		top:100px;
+		left:425px;
+		width:150px;
+		height:120px;
+		}

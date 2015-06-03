@@ -110,6 +110,7 @@ module.exports = function(passport) {
 				req.session.username = user[0].username;
 				req.session.gender = user[0].gender;
 				req.session.origin = user[0].origin;
+				req.session.user_id = user[0].userID;
 
 				return done(null, user);
 			});

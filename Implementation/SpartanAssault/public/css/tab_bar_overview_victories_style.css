@@ -10,4 +10,31 @@
 		width:1053px;
 		height:458px;
 		background-color:rgba(224,184,52, 0.1);
+		color:white;
+	}
+	
+	#userimage{
+		position: absolute;
+		top:45px;
+		left:25px;
+		width:160px;
+		height:200px;
+		background-color:white;
+		background-image:url(../assets/gladiator_profile_picture.png);
+		background-repeat:no-repeat;
+		background-position:center;
+		background-size:cover;
+	}
+	
+	#tablediv{
+		position: absolute;
+		top:55px;
+		left:210px;
+	}
+	
+	#username{
+		position: absolute;
+		top:12px;
+		left:60px;
+		font-size:20px;
 	}

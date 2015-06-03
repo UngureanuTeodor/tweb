@@ -9,6 +9,7 @@
 		left:10px;
 		width:1053px;
 		height:488px;
+		cursor:pointer;
 	}
 	
 	#tab_bar{
@@ -33,6 +34,15 @@
 	#tab_bar_colosseum{
 		position:absolute;
 		left:50px;
+		width:100px;
+		height:100%;
+		background-image:url(../assets/tab_buttons.png);
+		z-index:3;
+	}
+	
+	#tab_bar_fightResult{
+		position:absolute;
+		left:140px;
 		width:100px;
 		height:100%;
 		background-image:url(../assets/tab_buttons.png);

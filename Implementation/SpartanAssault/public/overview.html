@@ -11,7 +11,7 @@
 <body>
 	<div id="container">
 		<div id="tab_bar">
-			<div id="tab_bar_overview_overview">Overview</div>
+			<div id="tab_bar_overview_overview" onClick="javascript:injectOverviewHTML();">Overview</div>
 			<div id="tab_bar_overview_statistics">Statistics</div>
 			<div id="tab_bar_overview_victories">Victories</div>
 		</div>
@@ -47,6 +47,15 @@
 				$("#tab_bar_overview_statistics").css({"z-index":"2"});
 				$("#tab_bar_overview_victories").css({"z-index":"3"});
 			});
+			
+			function injectOverviewHTML() {
+				var iframe = document.getElementsById('overview_frame');
+				var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+				
+				var get_things = innerdoc.getElementsById('magic_div');
+				var arr = get_things.getElementsByTagName('script');
+				eval(arr[0].innerHTML);
+			}
 			
          });
 		 	 
