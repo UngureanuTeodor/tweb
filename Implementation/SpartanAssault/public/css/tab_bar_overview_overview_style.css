@@ -45,13 +45,13 @@
 		width:160px;
 		height:200px;
 		background-color:white;
-		background-image:url(../assets/gladiator_profile_picture.png);
+		background-image:url(../assets/gladiator_male.png);
 		background-repeat:no-repeat;
 		background-position:center;
 		background-size:cover;
 	}
 	
-	#strenghts {
+	#stats {
 		background-image:url(../assets/strengths.png);
 		background-repeat:no-repeat;
 		background-position:center;

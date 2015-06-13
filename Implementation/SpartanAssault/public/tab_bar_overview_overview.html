@@ -21,45 +21,65 @@
 					var json_obj = JSON.parse(json_text);
 					var myUsername = json_obj.username;
 					
-					var snippet = "<div id=\"title\"><span id=\"thisSpan\">"+myUsername+"<\/span><\/div>";
+					var snippet = "<div id=\"title\">"+myUsername+"<\/div>";
 					$(function() {
 						$('#title').replaceWith($(snippet));
 					});
 					
+					var gender = json_obj.gender;
+					snippet = "<div id=\"profile_picture\" style=\"background-image:url('assets/gladiator_"+gender+".png')\"><\/div>";
+					$(function() {
+						$('#profile_picture').replaceWith($(snippet));
+					});
+					
+					snippet = "<div id=\"stats\"> <p> Strength: " + json_obj.strength
+										  + "<\/p> <p> Agility: " + json_obj.agility
+										  + "<\/p> <p> Stamina: " + json_obj.stamina
+										  + "<\/p> <p> Charisma: " + json_obj.charisma
+										  + "<\/div>";
+					$(function() {
+						$('#stats').replaceWith($(snippet));
+					});
+					
 					var helm = json_obj.helmet;
-					snippet = "<div id=\"helmet\" style=\"background-image: url('assets/items/helm/"+helm+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><span id=\"helmSpan\"> <\/span><\/div>";
+					snippet = "<div id=\"helmet\" style=\"background-image: url('assets/items/helm/"+helm+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
 						$('#helmet').replaceWith($(snippet));
 					});
 					
 					var chest = json_obj.chest;
-					snippet = "<div id=\"chest\" style=\"background-image: url('assets/items/chest/"+chest+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><span id=\"helmSpan\"> <\/span><\/div>";
+					snippet = "<div id=\"chest\" style=\"background-image: url('assets/items/chest/"+chest+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
 						$('#chest').replaceWith($(snippet));
 					});
 					
 					var gloves = json_obj.gloves;
-					snippet = "<div id=\"gloves\" style=\"background-image: url('assets/items/gloves/"+gloves+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><span id=\"helmSpan\"> <\/span><\/div>";
+					snippet = "<div id=\"gloves\" style=\"background-image: url('assets/items/gloves/"+gloves+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
 						$('#gloves').replaceWith($(snippet));
 					});
 					
 					var boots = json_obj.boots;
-					snippet = "<div id=\"boots\" style=\"background-image: url('assets/items/boots/"+boots+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><span id=\"helmSpan\"> <\/span><\/div>";
+					snippet = "<div id=\"boots\" style=\"background-image: url('assets/items/boots/"+boots+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
 						$('#boots').replaceWith($(snippet));
 					});
 					
 					var shield = json_obj.shield;
-					snippet = "<div id=\"shield\" style=\"background-image: url('assets/items/shield/"+shield+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><span id=\"helmSpan\"> <\/span><\/div>";
+					snippet = "<div id=\"shield\" style=\"background-image: url('assets/items/shield/"+shield+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
 						$('#shield').replaceWith($(snippet));
 					});
 					
 					var weapon = json_obj.weapon;
-					snippet = "<div id=\"weapon\" style=\"background-image: url('assets/items/weapon/"+weapon+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><span id=\"helmSpan\"> <\/span><\/div>";
+					snippet = "<div id=\"weapon\" style=\"background-image: url('assets/items/weapon/"+weapon+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
 						$('#weapon').replaceWith($(snippet));
+					});
+					
+					snippet = "<div id=\"inventory1\" style=\"background-image: url('assets/items/"+json_obj.inventories[0].type+"/"+json_obj.inventories[0].name+".png'); background-repeat : no-repeat; background-position: center center\"><\/div>";
+					$(function() {
+						$('#inventory1').replaceWith($(snippet));
 					});
 				}
 			}
@@ -69,7 +89,7 @@
 
 		<div id="title"></div>
 		<div id="profile_picture"></div>
-		<div id="strenghts"></div>
+		<div id="stats"></div>
 		<div id="equipment"></div>
 		
 		<div id="inventory1">

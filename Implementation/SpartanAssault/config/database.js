@@ -42,7 +42,7 @@ module.exports = function(app) {
 			});
 			
 			models.guild=db.define("guild",{
-				guildID:Number,
+				guildID: { type: 'number', key: true },
 				guildName:String,
 				ownerID:Number,
 				number_members:Number,
@@ -54,8 +54,8 @@ module.exports = function(app) {
 			});
 			
 			models.inventory=db.define("inventory",{
-				userID:Number,
-				itemID:Number,
+				userID: { type: 'number', key: true },
+				itemID: { type: 'number', key: true },
 				itemType:String,
 				inventory_number:Number,
 				inventory_x_position:Number,
@@ -97,6 +97,7 @@ module.exports = function(app) {
 			models.consumable=db.define("consumable",{
 				consumableID:{ type: 'number', key: true },
 				consumableType:String,
+				consumableName:String,
 				consumableHP:Number,
 				price:Number
 			},{
@@ -123,7 +124,7 @@ module.exports = function(app) {
 			});
 			
 			models.market=db.define("market",{
-				auctionID:Number,
+				auctionID: { type: 'number', key: true },
 				userID:Number,
 				price:Number,
 				duration:Number,

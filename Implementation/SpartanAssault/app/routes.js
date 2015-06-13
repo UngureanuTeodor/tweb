@@ -106,59 +106,122 @@ module.exports = function(app, passport) {
 		else res.redirect('/');
     });
 	
-	app.get('/title', function(req, res) {
-		res.writeHead(200, {"Content-Type": "text/plain"});
-		res.end(req.session.username);
-	});
-	
-	app.get('/items', function(req, res) {
-		var equipment = req.models.equipment;
-		var armor = req.models.armour;
-		var helm_ID;
-		
-		equipment.find({ userID : req.session.user_id }, function(err, equip) {
-			if(!err) {
-				armor.find({ armourID : equip[0].helmetID}, function(err, helm) {
-					if(!err) {
-						console.log('Helm: ' + helm[0].armourName);
-						res.writeHead(200, {"Content-Type": "text/plain"});
-						res.end(helm[0].armourName);
-					}
-					else console.log('Helm error');
-				});
-			}
-			else console.log('Error: '+ err);
-		});
-	});
-	
 	app.get('/overview', function(req, res) {
-		var json_text = "{ \"username\" : \""+ req.session.username + "\", \"helmet\" : \"";
+		var json_text = "{ \"username\" : \""+ req.session.username + "\", \"gender\" : \""
+											 + req.session.gender + "\", \"strength\" : \"";
+		
+		var character = req.models.character;
 		var equipment = req.models.equipment;
 		var armor = req.models.armour;
 		var weap = req.models.weapon;
+		var inv = req.models.inventory;
+		var consumables = req.models.consumable;
 
-		equipment.find({ userID : req.session.user_id }, function(err, equip) {
+		character.find({ userID : req.session.user_id }, function(err, characterInfo) {
 			if(!err) {
-				armor.find({ armourID : equip[0].helmetID}, function(err, helm) {
+				json_text = json_text + characterInfo[0].strength + "\", \"agility\" : \"" +
+										characterInfo[0].agility + "\", \"stamina\" : \"" +
+										characterInfo[0].stamina + "\", \"charisma\" : \"" +
+										characterInfo[0].charisma + "\", \"helmet\" : \"";
+										
+				equipment.find({ userID : req.session.user_id }, function(err, equip) {
 					if(!err) {
-						json_text = json_text + helm[0].armourName + "\", \"chest\" : \"";
-						armor.find({ armourID : equip[0].chestID}, function(err, chest) {
+						armor.find({ armourID : equip[0].helmetID}, function(err, helm) {
 							if(!err) {
-								json_text = json_text + chest[0].armourName + "\", \"gloves\" : \"";
-								armor.find({ armourID : equip[0].glovesID}, function(err, gloves) {
+								json_text = json_text + helm[0].armourName + "\", \"chest\" : \"";
+								armor.find({ armourID : equip[0].chestID}, function(err, chest) {
 									if(!err) {
-										json_text = json_text + gloves[0].armourName + "\", \"boots\" : \"";
-										armor.find({ armourID : equip[0].bootsID}, function(err, boots) {
+										json_text = json_text + chest[0].armourName + "\", \"gloves\" : \"";
+										armor.find({ armourID : equip[0].glovesID}, function(err, gloves) {
 											if(!err) {
-												json_text = json_text + boots[0].armourName + "\", \"shield\" : \"";
-												armor.find({ armourID : equip[0].shieldID}, function(err, shield) {
+												json_text = json_text + gloves[0].armourName + "\", \"boots\" : \"";
+												armor.find({ armourID : equip[0].bootsID}, function(err, boots) {
 													if(!err) {
-														json_text = json_text + shield[0].armourName + "\", \"weapon\" : \"";
-														weap.find({ weaponID : equip[0].weaponID}, function(err, weapon) {
+														json_text = json_text + boots[0].armourName + "\", \"shield\" : \"";
+														armor.find({ armourID : equip[0].shieldID}, function(err, shield) {
 															if(!err) {
-																json_text = json_text + weapon[0].weaponName + "\"}";
-																res.writeHead(200, {"Content-Type": "text/plain"});
-																res.end(json_text);
+																json_text = json_text + shield[0].armourName + "\", \"weapon\" : \"";
+																weap.find({ weaponID : equip[0].weaponID}, function(err, weapon) {
+																	if(!err) {
+																		json_text = json_text + weapon[0].weaponName + "\", ";
+																		inv.find({ userID : req.session.user_id }, function(err, inventories) {
+																			if(!err) {
+																				json_text += "\"inventories\" : [ ";
+
+																				for(var index = 0; index < inventories.length; index++) {
+																					console.log(inventories[index].itemType);
+																					json_text += "{ \"number\" : \""
+																							   + inventories[index].inventory_number + "\", \"x\" : \""
+																							   + inventories[index].inventory_x_position + "\", \"y\" : \""
+																							   + inventories[index].inventory_y_position + "\", \"name\" : \"";
+																					
+																					var item_name;
+																					var item_type;
+																					if(inventories[index].itemType === "armor") {
+																						armor.find({ armourID : inventories[index].itemID }, function(err, armor_item) {
+																							if(!err) {
+																								json_text += armor_item.armourName + "\", \"type\" : \"" + armor_item.armourType + "\" }";
+
+																								if(index === parseInt(inventories.length-1)) {
+																									json_text += "] }";
+																				
+																									console.log(json_text);
+																									res.writeHead(200, {"Content-Type": "text/plain"});
+																									res.end(json_text);
+																								}
+																								else {
+																									json_text += ", ";
+																								}
+																								console.log("Json: " + json_text);
+																							}
+																							else console.log("Error: " + err);
+																						});
+																					}
+																					else 
+																						if(inventories[index].itemType === "weapon") {
+																							weap.find({ weaponID : inventories[index].itemID }, function(err, weap_item) {
+																								if(!err) {
+																									json_text += weap_item.weaponName + "\", \"type\" : \"" + "weapon" + "\" }";
+
+																									if(index !== parseInt(inventories.length-1)) {
+																										json_text += "] }";
+																					
+																										console.log(json_text);
+																										res.writeHead(200, {"Content-Type": "text/plain"});
+																										res.end(json_text);
+																									}
+																									else {
+																										json_text += ", ";
+																									}
+																									console.log("Json: " + json_text);
+																								}
+																								else console.log("Error: " + err);
+																							});
+																						}
+																						else {
+																							consumables.find({ consumableID : inventories[index].itemID }, function(err, cons_item) {
+																								if(!err) {
+																									json_text += cons_item[0].consumableName + "\", \"type\" : \"" + cons_item[0].consumableType + "\" }";
+
+																									if(index !== parseInt(inventories.length-1)) {
+																										json_text += "] }";
+																					
+																										console.log(json_text);
+																										res.writeHead(200, {"Content-Type": "text/plain"});
+																										res.end(json_text);
+																									}
+																									else {
+																										json_text += ", ";
+																									}
+																									console.log("Json: " + json_text);
+																								}
+																							});
+																						}
+																				}
+																			}
+																		});
+																	}
+																});
 															}
 														});
 													}
@@ -168,14 +231,17 @@ module.exports = function(app, passport) {
 									}
 								});
 							}
+							else console.log('Helm error');
 						});
 					}
-					else console.log('Helm error');
+					else console.log('Error: '+ err);
 				});
 			}
-			else console.log('Error: '+ err);
+			else console.log('Char error: '+ err);
 		});
 	});
+	
+	
 
     app.post('/logout', function(req, res) {
         req.session.destroy();
