@@ -51,10 +51,12 @@ module.exports = function(app, passport) {
 			User.find({ username : req.session.username}, function(err, user) {
 				if(!err) {
 					user[0].save({ gender: value }, function (err) {
+						req.session.gender = value;
 					});
 				}
 				else console.log('Error: '+err);
 			});
+			
 			res.redirect('/origin');
 		}
 		else {
