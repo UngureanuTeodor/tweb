@@ -62,37 +62,37 @@
 					
 					var json_obj = JSON.parse(json_text);
 					var helm = json_obj.helmet;
-					var snippet_items = "<div id=\"helmet\" style=\"background-image: url('assets/items/helm/"+helm+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					var snippet_items = "<div class=\"helmet\" draggable=\"true\" style=\"background-image: url('assets/items/helm/"+helm+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
 						$('#helmet').replaceWith($(snippet_items));
 					});
 					
 					var chest = json_obj.chest;
-					snippet_items = "<div id=\"chest\" style=\"background-image: url('assets/items/chest/"+chest+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					snippet_items = "<div class=\"chest\" draggable=\"true\" style=\"background-image: url('assets/items/chest/"+chest+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
 						$('#chest').replaceWith($(snippet_items));
 					});
 					
 					var gloves = json_obj.gloves;
-					snippet_items = "<div id=\"gloves\" style=\"background-image: url('assets/items/gloves/"+gloves+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					snippet_items = "<div class=\"gloves\" draggable=\"true\" style=\"background-image: url('assets/items/gloves/"+gloves+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
 						$('#gloves').replaceWith($(snippet_items));
 					});
 					
 					var boots = json_obj.boots;
-					snippet_items = "<div id=\"boots\" style=\"background-image: url('assets/items/boots/"+boots+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					snippet_items = "<div class=\"boots\" draggable=\"true\" style=\"background-image: url('assets/items/boots/"+boots+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
 						$('#boots').replaceWith($(snippet_items));
 					});
 					
 					var shield = json_obj.shield;
-					snippet_items = "<div id=\"shield\" style=\"background-image: url('assets/items/shield/"+shield+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					snippet_items = "<div class=\"shield\" draggable=\"true\" style=\"background-image: url('assets/items/shield/"+shield+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
 						$('#shield').replaceWith($(snippet_items));
 					});
 					
 					var weapon = json_obj.weapon;
-					snippet_items = "<div id=\"weapon\" style=\"background-image: url('assets/items/weapon/"+weapon+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					snippet_items = "<div class=\"weapon\" draggable=\"true\" style=\"background-image: url('assets/items/weapon/"+weapon+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
 						$('#weapon').replaceWith($(snippet_items));
 					});
@@ -121,31 +121,31 @@
 					for(var index = 0; index <=json_obj.inventories.length; index++) {
 						if(index < parseInt(json_obj.inventories.length)) {
 							if(parseInt(json_obj.inventories[index]["number"]) == 1) {
-								inv1 += " <div id=\"item"+index+"\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+								inv1 += " <div id=\"item"+index+"\" class=\""+json_obj.inventories[index]["type"]+"\" draggable=\"true\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
 								"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
 								"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
 								"background-repeat : no-repeat; background-position: center center; background-size: contain\"> <\/div>";
 							}
 							else if(parseInt(json_obj.inventories[index]["number"]) == 2) {
-									inv2 += " <div id=\"item"+index+"\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+									inv2 += " <div id=\"item"+index+"\" class=\""+json_obj.inventories[index]["type"]+"\" draggable=\"true\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
 									"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
 									"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
 									"background-repeat : no-repeat; background-position: center center; background-size: contain\"> <\/div>";
 								}
 								else if(parseInt(json_obj.inventories[index]["number"]) == 3) {
-										inv3 += " <div id=\"item"+index+"\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+										inv3 += " <div id=\"item"+index+"\" class=\""+json_obj.inventories[index]["type"]+"\" draggable=\"true\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
 										"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
 										"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
 										"background-repeat : no-repeat; background-position: center center; background-size: contain\"> <\/div>";
 									}
 									else if(parseInt(json_obj.inventories[index]["number"]) == 2) {
-											inv4 += " <div id=\"item"+index+"\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+											inv4 += " <div id=\"item"+index+"\" class=\""+json_obj.inventories[index]["type"]+"\" draggable=\"true\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
 											"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
 											"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
 											"background-repeat : no-repeat; background-position: center center; background-size: contain\"> <\/div>";
 										}
 										else {
-											inv5 += " <div id=\"item"+index+"\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+											inv5 += " <div id=\"item"+index+"\" class=\""+json_obj.inventories[index]["type"]+"\" draggable=\"true\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
 											"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
 											"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
 											"background-repeat : no-repeat; background-position: center center; background-size: contain\"> <\/div>";
@@ -200,19 +200,15 @@
 		<div id="inventory_menu_bar_button4" class="alignCenter">IV</div>
 		<div id="inventory_menu_bar_button5" class="alignCenter">V</div>
 		
-		<div id="helmet"></div>
-		<div id="weapon"></div>
-		<div id="chest"></div>
-		<div id="shield"></div>
-		<div id="gloves"></div>
-		<div id="boots"></div>
-		<div id="magic1"></div>
-		<div id="magic2"></div>
-		<div id="magic3"></div>
+	<div class="helmetTarget" draggable="true"></div>
+		<div class="weaponTarget" draggable="true"></div>
+		<div class="chestTarget" draggable="true"></div>
+		<div class="shieldTarget" draggable="true"></div>
+		<div class="glovesTarget" draggable="true"></div>
+		<div class="bootsTarget" draggable="true"></div>
 	</div>
+	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="/node_modules/interact.js/interact.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.4/interact.min.js"></script>
 	
 	<script type="text/javascript" language="javascript">
 
@@ -263,100 +259,120 @@
 				$("#inventory4").hide();
 				$("#inventory5").show();
 			});
-			
-	interact('.draggable')
-	    .draggable({
-	        onmove: function (event) {
-	            var target = event.target,
-	                x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-	                y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+	});		
+	</script>
 	
-	            target.style.webkitTransform =
-	            target.style.transform =
-	                'translate(' + x + 'px, ' + y + 'px)';
-	
-	            target.setAttribute('data-x', x);
-	            target.setAttribute('data-y', y);
-	        },
-	        onend: function (event) {
+	<script type="text/javascript" language="javascript">
+	$(document).ready(function() {
+		var dragSrcEl = null;
+
+		function handleDragStart(e) {
+		  // Target (this) element is the source node.
+		  dragSrcEl = this;
+		  e.dataTransfer.effectAllowed = 'move';
+		  e.dataTransfer.setData('text/html', this.innerHTML);
+		}
+
+		function handleDragOver(e) {
+		  if (e.preventDefault) {
+			e.preventDefault(); // Necessary. Allows us to drop.
+		  }
+		  e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+		  return false;
+		}
+
+		function handleDragEnter(e) {
+		  // this / e.target is the current hover target.
+		  this.classList.add('over');
+		}
+
+		function handleDragLeave(e) {
+		  this.classList.remove('over');  // this / e.target is previous target element.
+		}
+
+		function handleDrop(e) {
+		  // this/e.target is current target element.
+		  if (e.stopPropagation) {
+			e.stopPropagation(); // Stops some browsers from redirecting.
+		  }
+
+		  // Don't do anything if dropping the same column we're dragging.
+		  if (dragSrcEl != this) {
+			// Set the source column's HTML to the HTML of the column we dropped on.
+			dragSrcEl.innerHTML = this.innerHTML;
+			this.innerHTML = e.dataTransfer.getData('text/html');
 			
-	            var dropRect = interact.getElementRect(event.target);
-		        var stanga = dropRect.left;
-				var sus = dropRect.top;
-				
-				var chestPosition=814;
-				var pozitieFinalaStanga=chestPosition-stanga;
-				
-				var chestPositionTop=178;
-				var pozitieFinalaSus=chestPositionTop-sus;
+			var targetName=($(this).attr('class').split(" ")[0]);
+			var nodeName=targetName.replace('Target','');
+			
+			var bg = $('.'+nodeName).css('background');
+			var bg2 = $('.'+targetName).css('background');
+			
+			$('.'+nodeName).css("background", bg2);
+			$('.'+targetName).css("background", bg);  
+		  }
+		  else{
+			$(".helmet, .weapon, .chest, .shield, .gloves, .boots, .helmetTarget, .weaponTarget, .chestTarget, .shieldTarget, .glovesTarget, .bootsTarget").removeClass('over'); 	
+		  }
+		return false;
+		}
 
-				$("#test").css({"position":"absolute", "left":pozitieFinalaStanga, "top":pozitieFinalaSus, "z-index":"5"});
-				$("#test").removeClass();
-				
-				
-				var textEl = event.target.querySelector('p');
-	            
-	            textEl && (textEl.textContent =
-	                'moved a distance of '
-	                + (Math.sqrt(event.dx * event.dx +
-	                             event.dy * event.dy)|0) + 'px');
-	        }
-	    })
-	    .inertia(true)
-	    .restrict({
-	        drag: "self",
-	        endOnly: true,
-	        elementRect: { top: 20, left: 20, bottom: 0, right: 0 }
-	    });
-	    
-	interact('.draggable').snap({
-	      mode: 'anchor',
-	      anchors: [],
-	      range: Infinity,
-	      elementOrigin: { x: 0.5, y: 0.5 },
-	      endOnly: true
-	});
-    
-	interact("#chest").dropzone({
-	    accept: "#test",
-	    overlap: 1,
-	    ondropactivate: function (event) {
-	        event.target.classList.add('drop-active');
-	    },
-	    ondragenter: function (event) {
+		function handleDragEnd(e) {
+		  // this/e.target is the source node.
+			$(".helmet, .weapon, .chest, .shield, .gloves, .boots, .helmetTarget, .weaponTarget, .chestTarget, .shieldTarget, .glovesTarget, .bootsTarget").removeClass('over');
+		}
 
-	        var draggableElement = event.relatedTarget,
-	            dropzoneElement = event.target;
-	        dropzoneElement.classList.add('drop-target');
-	        draggableElement.classList.add('can-drop');
-		    var dropRect = interact.getElementRect(event.target),
-		        dropCenter = {
-		          x: dropRect.left + dropRect.width  / 2,
-		          y: dropRect.top  + dropRect.height / 2
-		        };
+		$(".helmet, .weapon, .chest, .shield, .gloves, .boots, .bootsTarget").mousedown(function(){
+			var cols=document.querySelectorAll(".helmet, .weapon, .chest, .shield, .gloves, .boots, .helmetTarget, .weaponTarget, .chestTarget, .shieldTarget, .glovesTarget, .bootsTarget");
+
+			[].forEach.call(cols, function(col) {
+			  col.removeEventListener('dragstart', handleDragStart, false);
+			  col.removeEventListener('dragenter', handleDragEnter, false)
+			  col.removeEventListener('dragover', handleDragOver, false);
+			  col.removeEventListener('dragleave', handleDragLeave, false);
+			  col.removeEventListener('drop', handleDrop, false);
+			  col.removeEventListener('dragend', handleDragEnd, false);
+			});
+			
+			var cols = document.querySelectorAll('.'+$(this).attr('class'));
+			
+			[].forEach.call(cols, function(col) {
+			  col.addEventListener('dragstart', handleDragStart, false);
+			  col.addEventListener('dragenter', handleDragEnter, false)
+			  col.addEventListener('dragover', handleDragOver, false);
+			  col.addEventListener('dragleave', handleDragLeave, false);
+			  col.addEventListener('drop', handleDrop, false);
+			  col.addEventListener('dragend', handleDragEnd, false);
+			});
+			
+			cols = document.querySelectorAll('.'+$(this).attr('class')+"Target");
+			
+			[].forEach.call(cols, function(col) {
+			  col.addEventListener('dragstart', handleDragStart, false);
+			  col.addEventListener('dragenter', handleDragEnter, false)
+			  col.addEventListener('dragover', handleDragOver, false);
+			  col.addEventListener('dragleave', handleDragLeave, false);
+			  col.addEventListener('drop', handleDrop, false);
+			  col.addEventListener('dragend', handleDragEnd, false);
+			});
+		});
 		
-		    event.draggable.snap({
-		      anchors: [ dropCenter ]
-		    });
-	    },
-	    ondragleave: function (event) {
-	        var draggableElement = event.relatedTarget,
-	            dropzoneElement = event.target;
-	        event.target.classList.remove('drop-target');
-	        event.relatedTarget.classList.remove('can-drop');	
-			event.draggable.snap(false);
-	    },
-	    ondrop: function (event) {
-	    },
-	    ondropdeactivate: function (event) {
-	        event.target.classList.remove('drop-active');
-	        event.target.classList.remove('drop-target');
-	    }
-	})
+		$(".helmetTarget, .weaponTarget, .chestTarget, .shieldTarget, .glovesTarget").mousedown(function(){
+			var cols=document.querySelectorAll(".helmetTarget, .weaponTarget, .chestTarget, .shieldTarget, .glovesTarget");
 			
-         });
-		 
-    </script>
+			[].forEach.call(cols, function(col) {
+			  col.removeEventListener('dragstart', handleDragStart, false);
+			  col.removeEventListener('dragenter', handleDragEnter, false)
+			  col.removeEventListener('dragover', handleDragOver, false);
+			  col.removeEventListener('dragleave', handleDragLeave, false);
+			  col.removeEventListener('drop', handleDrop, false);
+			  col.removeEventListener('dragend', handleDragEnd, false);
+			});
+		});
+			
+    });
+	
+	</script>
 	
 </body>
 </html>

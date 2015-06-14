@@ -34,92 +34,100 @@ module.exports = function(passport) {
 		var User = req.models.user;
 
         process.nextTick(function() {
-
+			var taken = false;
 			User.find({ username :  user_register }, function(err, user) {
-				
 				if (err) {
+					taken = true;
 					return done(err);
 				}
 				
 				if (user.length > 0) {
+					taken = true;
 					return done(null, false, req.flash('messageEmail', 'The username is already taken.'));
 				}
 			});
 			
 			if(pass_register.length < 8 || pass_register.length > 20) {
+				taken = true;
 				return done(null, false, req.flash('messagePass', 'The password needs to have between 8-20 characters.'));
 			}
 			
 			if(!req.body.email_register.match(/^([0-9]|[a-z])+([0-9a-z]+)@([0-9]|[a-z])+([0-9a-z]+).([a-z])+$/i)) {
+				taken = true;
 				return done(null, false, req.flash('messageEmail', 'The email is invalid.'));
 			}
 			
 			User.find({ email :  req.body.email_register }, function(err, user) {
 				
 				if (err) {
+					taken = true;
 					return done(err);
 				}
 				
 				if (user.length > 0) {
+					taken = true;
 					return done(null, false, req.flash('messageEmail', 'The email has already been used.'));
 				}
 			});
 			
-			var newUser = new User();
+			if(!taken) {
+				var newUser = new User();
 
-			// set the user's local credentials
-			newUser.username    = user_register;
-			newUser.password = newUser.generateHash(pass_register);
-			newUser.email = req.body.email_register;
-			newUser.gender = "";
-			newUser.origin = "";
+				// set the user's local credentials
+				newUser.username    = user_register;
+				newUser.password = newUser.generateHash(pass_register);
+				newUser.email = req.body.email_register;
+				newUser.gender = "";
+				newUser.origin = "";
 
-			// save the user
-			newUser.save(function(err) {
-				if (err) {
-					throw err;
-					console.log('Save error : '+err);
-				}
-				return done(null, newUser);
-			});
+				// save the user
+				newUser.save(function(err) {
+					if (err) {
+						throw err;
+						console.log('Save error : '+err);
+					}
+					return done(null, newUser);
+				});
+				
+				var Character = req.models.character;
+				var newChar = new Character();
+				
+				newChar.level = 1;
+				newChar.xp = 0;
+				newChar.hp = 100;
+				newChar.strength = 1;
+				newChar.agility = 1;
+				newChar.stamina = 1;
+				newChar.charisma = 1;
+				newChar.gold = 0;
+				
+				newChar.save(function(err) {
+					if(err) {
+						throw err;
+						console.log('Save error : '+err);
+					}
+					return done(null, newChar);
+				});
+				
+				var Equip = req.models.equipment;
+				var newEquipment = new Equip();
+				
+				newEquipment.helmetID = 3;
+				newEquipment.chestID = 1;
+				newEquipment.glovesID = 2;
+				newEquipment.bootsID = 0;
+				newEquipment.weaponID = 0;
+				newEquipment.shieldID = 4;
+				
+				newEquipment.save(function(err) {
+					if(err) {
+						throw err;
+						console.log('Save error : '+err);
+					}
+					return done(null, newEquipment);
+				});
+			}
 			
-			var Character = req.models.character;
-			var newChar = new Character();
-			
-			newChar.level = 1;
-			newChar.xp = 0;
-			newChar.hp = 100;
-			newChar.strength = 1;
-			newChar.agility = 1;
-			newChar.stamina = 1;
-			newChar.charisma = 1;
-			newChar.gold = 0;
-			
-			newChar.save(function(err) {
-				if(err) {
-					throw err;
-					console.log('Save error : '+err);
-				}
-				return done(null, newChar);
-			});
-			
-			var Equip = req.models.equipment;
-			var newEquipment = new Equip();
-			
-			newEquipment.helmetID = 3;
-			newEquipment.chestID = 1;
-			newEquipment.glovesID = 2;
-			newEquipment.bootsID = 0;
-			newEquipment.weaponID = 0;
-			newEquipment.shieldID = 4;
-			
-			newEquipment.save(function(err) {
-				if(err) {
-					throw err;
-					console.log('Save error : '+err);
-				}
-				return done(null, newEquipment);
-			});
         });
 
     }));

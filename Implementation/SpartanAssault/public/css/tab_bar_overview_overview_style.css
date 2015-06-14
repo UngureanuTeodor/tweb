@@ -1,4 +1,14 @@
 
+	[draggable=true] {
+	  -moz-user-select: none;
+	  -khtml-user-select: none;
+	  -webkit-user-select: none;
+	  user-select: none;
+	  -khtml-user-drag: element;
+	  -webkit-user-drag: element;
+	  cursor:move;
+	}
+	
 	body{
 		display:block;
 	}
@@ -221,15 +231,17 @@
 		height:30px;
 	}
 	
-	#helmet {
+	.helmetTarget {
 		position: absolute;
 		top:89px;
 		left:796px;
 		width:72px;
 		height:72px;
+		background-color:red;
+		opacity:0.5;
 	}
 	
-	#weapon {
+	.weaponTarget {
 		position: absolute;
 		top:170px;
 		left:705px;
@@ -237,7 +249,7 @@
 		height:110px;
 	}
 	
-	#chest {
+	.chestTarget {
 		position: absolute;
 		top:170px;
 		left:796px;
@@ -245,7 +257,7 @@
 		height:110px;
 	}
 	
-	#shield {
+	.shieldTarget {
 		position: absolute;
 		top:170px;
 		left:888px;
@@ -253,7 +265,7 @@
 		height:110px;
 	}
 	
-	#gloves {
+	.glovesTarget {
 		position: absolute;
 		top:298px;
 		left:705px;
@@ -261,34 +273,92 @@
 		height:72px;
 	}
 	
-	#boots {
+	.bootsTarget {
 		position: absolute;
 		top:298px;
 		left:796px;
 		width:72px;
 		height:72px;
+		background-color:yellow;
+		opacity:0.5;
 	}
 	
-	#magic1 {
-		position: absolute;
-		top:127px;
-		left:888px;
-		width:35px;
-		height:35px;
+	.helmet {
+		cursor: move;
 	}
 	
-	#magic2 {
-		position: absolute;
-		top:298px;
-		left:888px;
-		width:35px;
-		height:35px;
+	.weapon {
+		cursor: move;
 	}
 	
-	#magic3 {
-		position: absolute;
-		top:298px;
-		left:926px;
-		width:35px;
-		height:35px;
+	.chest {
+		cursor: move;
+	}
+	
+	.shield {
+		cursor: move;
+	}
+	
+	.gloves {
+		cursor: move;
+	}
+	
+	.boots {
+		background-color:yellow;
+		opacity:0.5;
+		cursor: move;
+	}
+	
+	
+	
+	
+	.helmet.over {
+		border: 2px dashed #000;
+	}
+	
+	.weapon.over {
+		border: 2px dashed #000;
+	}
+	
+	.chest.over {
+		border: 2px dashed #000;
+	}
+	
+	.shield.over {
+		border: 2px dashed #000;
+	}
+	
+	.gloves.over {
+		border: 2px dashed #000;
+	}
+	
+	.boots.over {
+		border: 2px dashed #000;
+	}
+	
+	
+	
+	
+	.helmetTarget.over {
+		border: 2px dashed #000;
+	}
+	
+	.weaponTarget.over {
+		border: 2px dashed #000;
+	}
+	
+	.chestTarget.over {
+		border: 2px dashed #000;
+	}
+	
+	.shieldTarget.over {
+		border: 2px dashed #000;
+	}
+	
+	.glovesTarget.over {
+		border: 2px dashed #000;
+	}
+	
+	.bootsTarget.over {
+		border: 2px dashed #000;
 	}
