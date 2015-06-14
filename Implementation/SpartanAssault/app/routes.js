@@ -123,33 +123,39 @@ module.exports = function(app, passport) {
 										characterInfo[0].agility + "\", \"stamina\" : \"" +
 										characterInfo[0].stamina + "\", \"charisma\" : \"" +
 										characterInfo[0].charisma + "\", \"helmet\" : \"";
-										
+				
+				var equipped_value = 0, inv_value = 0;
 				equipment.find({ userID : req.session.user_id }, function(err, equip) {
 					if(!err) {
 						armor.find({ armourID : equip[0].helmetID}, function(err, helm) {
 							if(!err) {
+								equipped_value += helm[0].price;
 								json_text = json_text + helm[0].armourName + "\", \"chest\" : \"";
 								armor.find({ armourID : equip[0].chestID}, function(err, chest) {
 									if(!err) {
+										equipped_value += chest[0].price;
 										json_text = json_text + chest[0].armourName + "\", \"gloves\" : \"";
 										armor.find({ armourID : equip[0].glovesID}, function(err, gloves) {
 											if(!err) {
+												equipped_value += gloves[0].price;
 												json_text = json_text + gloves[0].armourName + "\", \"boots\" : \"";
 												armor.find({ armourID : equip[0].bootsID}, function(err, boots) {
 													if(!err) {
+														equipped_value += boots[0].price;
 														json_text = json_text + boots[0].armourName + "\", \"shield\" : \"";
 														armor.find({ armourID : equip[0].shieldID}, function(err, shield) {
 															if(!err) {
+																equipped_value += shield[0].price;
 																json_text = json_text + shield[0].armourName + "\", \"weapon\" : \"";
 																weap.find({ weaponID : equip[0].weaponID}, function(err, weapon) {
 																	if(!err) {
-																		json_text = json_text + weapon[0].weaponName + "\", ";
+																		equipped_value += weapon[0].price;
+																		json_text = json_text + weapon[0].weaponName + "\", \"equipped_val\" : \"" + equipped_value + "\", ";
 																		inv.find({ userID : req.session.user_id }, function(err, inventories) {
 																			if(!err) {
 																				json_text += "\"inventories\" : [ ";
-
-																				for(var index = 0; index < inventories.length; index++) {
-																					console.log(inventories[index].itemType);
+																				
+																				var get_inv = function(inventories, index, json_text, get_inv) {
 																					json_text += "{ \"number\" : \""
 																							   + inventories[index].inventory_number + "\", \"x\" : \""
 																							   + inventories[index].inventory_x_position + "\", \"y\" : \""
@@ -158,66 +164,68 @@ module.exports = function(app, passport) {
 																					var item_name;
 																					var item_type;
 																					if(inventories[index].itemType === "armor") {
+																						armor = req.models.armour;
 																						armor.find({ armourID : inventories[index].itemID }, function(err, armor_item) {
 																							if(!err) {
-																								json_text += armor_item.armourName + "\", \"type\" : \"" + armor_item.armourType + "\" }";
-
+																								json_text += armor_item[0].armourName + "\", \"type\" : \"" + armor_item[0].armourType + "\" }";
+																								inv_value+= armor_item[0].price;
+																								
 																								if(index === parseInt(inventories.length-1)) {
-																									json_text += "] }";
-																				
-																									console.log(json_text);
+																									json_text += "], \"inventory_val\" :  \"" + inv_value + "\"}";
+																									console.log("Json: "+json_text);
 																									res.writeHead(200, {"Content-Type": "text/plain"});
 																									res.end(json_text);
 																								}
 																								else {
 																									json_text += ", ";
+																									get_inv(inventories, index+1, json_text, get_inv);
 																								}
-																								console.log("Json: " + json_text);
 																							}
-																							else console.log("Error: " + err);
 																						});
 																					}
 																					else 
 																						if(inventories[index].itemType === "weapon") {
 																							weap.find({ weaponID : inventories[index].itemID }, function(err, weap_item) {
 																								if(!err) {
-																									json_text += weap_item.weaponName + "\", \"type\" : \"" + "weapon" + "\" }";
+																									json_text += weap_item[0].weaponName + "\", \"type\" : \"" + "weapon" + "\" }";
+																									inv_value+= weap_item[0].price;
 
-																									if(index !== parseInt(inventories.length-1)) {
-																										json_text += "] }";
-																					
-																										console.log(json_text);
+																									if(index === parseInt(inventories.length-1)) {
+																										json_text += "], \"inventory_val\" :  \"" + inv_value + "\"}";
+																										console.log("Json: "+json_text);
 																										res.writeHead(200, {"Content-Type": "text/plain"});
 																										res.end(json_text);
 																									}
 																									else {
-																										json_text += ", ";
+																										json_text += ", "; 
+																										get_inv(inventories, index+1, json_text, get_inv);
 																									}
-																									console.log("Json: " + json_text);
 																								}
-																								else console.log("Error: " + err);
 																							});
 																						}
 																						else {
 																							consumables.find({ consumableID : inventories[index].itemID }, function(err, cons_item) {
 																								if(!err) {
 																									json_text += cons_item[0].consumableName + "\", \"type\" : \"" + cons_item[0].consumableType + "\" }";
-
-																									if(index !== parseInt(inventories.length-1)) {
-																										json_text += "] }";
-																					
-																										console.log(json_text);
+																									inv_value+= cons_item[0].price;
+																									
+																									console.log("Index: "+index+", Inv: "+parseInt(inventories.length-1));
+																									if(index === parseInt(inventories.length-1)) {
+																										json_text += "], \"inventory_val\" :  \"" + inv_value + "\"}";
+																										console.log("Json: "+json_text);
 																										res.writeHead(200, {"Content-Type": "text/plain"});
 																										res.end(json_text);
 																									}
 																									else {
 																										json_text += ", ";
+																										get_inv(inventories, index+1, json_text, get_inv);
 																									}
-																									console.log("Json: " + json_text);
 																								}
 																							});
 																						}
 																				}
+																				
+																				get_inv(inventories, 0, json_text, get_inv);
 																			}
 																		});
 																	}

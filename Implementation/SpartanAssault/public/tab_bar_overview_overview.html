@@ -77,10 +77,68 @@
 						$('#weapon').replaceWith($(snippet));
 					});
 					
-					snippet = "<div id=\"inventory1\" style=\"background-image: url('assets/items/"+json_obj.inventories[0].type+"/"+json_obj.inventories[0].name+".png'); background-repeat : no-repeat; background-position: center center\"><\/div>";
-					$(function() {
-						$('#inventory1').replaceWith($(snippet));
-					});
+					var inv_description = "<div id=\"inventory_description\" <p> Total equipped value: " + json_obj.equipped_val+
+																	  "<\/p> <p> Total inventory value: " + json_obj.inventory_val+
+																	  "<\/p> <p> No. of items: " + json_obj.inventories.length+
+																	  "<\/p> <\/div>";
+					
+					var inv1="<div id=\"inventory1\" style=\"display: block;\">", inv2="<div id=\"inventory2\" style=\"display: none;\">", inv3="<div id=\"inventory3\" style=\"display: none;\">",
+						inv4="<div id=\"inventory4\" style=\"display: none;\">", inv5="<div id=\"inventory5\" style=\"display: none;\">";
+
+					for(var index = 0; index <=json_obj.inventories.length; index++) {
+						if(index < parseInt(json_obj.inventories.length)) {
+							if(parseInt(json_obj.inventories[index]["number"]) == 1) {
+								inv1 += " <div id=\"item"+index+"\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+								"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
+								"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
+								"background-repeat : no-repeat; background-position: center center; background-size: contain\"> <\/div>";
+							}
+							else if(parseInt(json_obj.inventories[index]["number"]) == 2) {
+									inv2 += " <div id=\"item"+index+"\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+									"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
+									"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
+									"background-repeat : no-repeat; background-position: center center; background-size: contain\"> <\/div>";
+								}
+								else if(parseInt(json_obj.inventories[index]["number"]) == 3) {
+										inv3 += " <div id=\"item"+index+"\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+										"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
+										"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
+										"background-repeat : no-repeat; background-position: center center; background-size: contain\"> <\/div>";
+									}
+									else if(parseInt(json_obj.inventories[index]["number"]) == 2) {
+											inv4 += " <div id=\"item"+index+"\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+											"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
+											"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
+											"background-repeat : no-repeat; background-position: center center; background-size: contain\"> <\/div>";
+										}
+										else {
+											inv5 += " <div id=\"item"+index+"\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+											"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
+											"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
+											"background-repeat : no-repeat; background-position: center center; background-size: contain\"> <\/div>";
+										}
+						}
+						else {
+							$(function() {
+								$('#inventory1').replaceWith($(inv1+"<\/div>"));
+							});
+							$(function() {
+								$('#inventory2').replaceWith($(inv2+"<\/div>"));
+							});
+							$(function() {
+								$('#inventory3').replaceWith($(inv3+"<\/div>"));
+							});
+							$(function() {
+								$('#inventory4').replaceWith($(inv4+"<\/div>"));
+							});
+							$(function() {
+								$('#inventory5').replaceWith($(inv5+"<\/div>"));
+							});
+							$(function() {
+								$('#inventory_description').replaceWith($(inv_description));
+							});
+						}
+					}
 				}
 			}
 			xmlhttp.send();
