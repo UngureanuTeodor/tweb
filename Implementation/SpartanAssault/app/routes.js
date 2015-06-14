@@ -187,9 +187,7 @@ module.exports = function(app, passport) {
 				var json_text = "{ \"inventories\" : [ ";
 				
 				var get_inv = function(inventories, index, json_text, get_inv, inv_value) {
-					console.log("before");
 					if(inventories.length === 0) {
-						console.log("in");
 						json_text += " ] }";
 						
 						res.writeHead(200, {"Content-Type": "text/plain"});
@@ -198,7 +196,6 @@ module.exports = function(app, passport) {
 						return false;
 					}
 					
-					console.log("after");
 					inv_value = parseInt(inv_value);
 					json_text += "{ \"number\" : \""
 							   + inventories[index].inventory_number + "\", \"x\" : \""
@@ -216,7 +213,7 @@ module.exports = function(app, passport) {
 								
 								if(index === parseInt(inventories.length-1)) {
 									json_text += "], \"inventory_val\" :  \"" + inv_value + "\"}";
-									console.log("Json: "+json_text);
+									
 									res.writeHead(200, {"Content-Type": "text/plain"});
 									res.end(json_text);
 								}
@@ -236,7 +233,7 @@ module.exports = function(app, passport) {
 
 									if(index === parseInt(inventories.length-1)) {
 										json_text += "], \"inventory_val\" :  \"" + inv_value + "\"}";
-										console.log("Json: "+json_text);
+										
 										res.writeHead(200, {"Content-Type": "text/plain"});
 										res.end(json_text);
 									}
@@ -256,7 +253,7 @@ module.exports = function(app, passport) {
 									console.log("Index: "+index+", Inv: "+parseInt(inventories.length-1));
 									if(index === parseInt(inventories.length-1)) {
 										json_text += "], \"inventory_val\" :  \"" + inv_value + "\"}";
-										console.log("Json: "+json_text);
+										
 										res.writeHead(200, {"Content-Type": "text/plain"});
 										res.end(json_text);
 									}

@@ -118,7 +118,8 @@ module.exports = function(app) {
 				upgrade_level:Number,
 				price:Number,
 				weight:Number,
-				armourName:String
+				armourName:String,
+				defense:Number
 			},{
 				methods: {
 					
@@ -133,6 +134,22 @@ module.exports = function(app) {
 				inventoryID:Number
 			},{
 				methods: {
+					
+				}
+			});
+			
+			models.fights=db.define("fights", {
+				userID: { type: 'number', key: true},
+				total:Number,
+				wins:Number,
+				defeats:Number,
+				draws:Number,
+				dmg_taken:Number,
+				dmg_dealt:Number,
+				gold_won:Number,
+				gold_lost:Number
+			}, {
+				methods : {
 					
 				}
 			});

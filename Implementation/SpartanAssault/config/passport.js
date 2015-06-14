@@ -126,6 +126,26 @@ module.exports = function(passport) {
 					}
 					return done(null, newEquipment);
 				});
+				
+				var Fights = req.models.fights;
+				var newFights = new Fights();
+				
+				newFights.total = 0;
+				newFights.wins = 0;
+				newFights.defeats = 0;
+				newFights.draws = 0;
+				newFights.dmg_taken = 0;
+				newFights.dmg_dealt = 0;
+				newFights.gold_won = 0;
+				newFights.gold_lost = 0;
+				
+				newFights.save(function(err) {
+					if(err) {
+						throw err;
+						console.log('Save error : '+err);
+					}
+					return done(null, newFights);
+				});
 			}
 			
         });
