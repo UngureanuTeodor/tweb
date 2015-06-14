@@ -2,7 +2,9 @@ var orm = require('orm');
 var bcrypt   = require('bcrypt-nodejs');
 
 module.exports = function(app) {
-	app.use(orm.express("mysql://root:@localhost/spartandb",
+	var str = "mysql://sql580654:zV6%dZ2!@sql5.freemysqlhosting.net:3306/sql580654";
+	var encoded_str = str.replace(/%([^\d].)/, "%25$1");
+	app.use(orm.express(encoded_str,
 	{
 		define: function (db, models) {
 			models.user = db.define("user", {
