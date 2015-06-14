@@ -10,8 +10,26 @@
 </head>
 <body>
 	<div id="container">
-		<div>
-			<div id="username">Username</div>
+		<div id="magic_div">
+			<script type="text/javascript">
+				xmlhttp = new XMLHttpRequest();
+				xmlhttp.open("GET","http://localhost:3000/main_info", true);
+				xmlhttp.onreadystatechange=function(){
+					if (xmlhttp.readyState==4 && xmlhttp.status==200){
+						var json_text = xmlhttp.responseText;
+						
+						var json_obj = JSON.parse(json_text);
+						var myUsername = json_obj.username;
+						
+						var snippet = "<div id=\"username\">"+myUsername+"<\/div>";
+						$(function() {
+							$('#username').replaceWith($(snippet));
+						});
+					}
+				}
+				xmlhttp.send();
+			</script>
+			<div id="username"></div>
 			<div id="userimage"></div>
 			<div id="tablediv">
 				<table style="width:100%; height:50%">
