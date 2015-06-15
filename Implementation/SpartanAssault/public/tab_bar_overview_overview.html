@@ -19,17 +19,13 @@
 					var json_text = xmlhttp.responseText;
 					
 					var json_obj = JSON.parse(json_text);
-					var myUsername = json_obj.username;
 					
-					var snippet = "<div id=\"title\">"+myUsername+"<\/div>";
 					$(function() {
-						$('#title').replaceWith($(snippet));
+						$('#title').replaceWith($("<div id=\"title\">"+json_obj.username+"<\/div>"));
 					});
 					
-					var gender = json_obj.gender;
-					snippet = "<div id=\"profile_picture\" style=\"background-image:url('assets/gladiator_"+gender+".png')\"><\/div>";
 					$(function() {
-						$('#profile_picture').replaceWith($(snippet));
+						$('#profile_picture').replaceWith($("<div id=\"profile_picture\" style=\"background-image:url('assets/gladiator_"+json_obj.gender+".png')\"><\/div>"));
 					});
 				}
 			}
@@ -62,39 +58,39 @@
 					
 					var json_obj = JSON.parse(json_text);
 					var helm = json_obj.helmet;
-					var snippet_items = "<div class=\"helmet\" draggable=\"true\" style=\"background-image: url('assets/items/helm/"+helm+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					var snippet_items = "<div class=\"helmetTarget\" draggable=\"true\" style=\"background-image: url('assets/items/helm/"+helm+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
-						$('#helmet').replaceWith($(snippet_items));
+						$('.helmetTarget').replaceWith($(snippet_items));
 					});
 					
 					var chest = json_obj.chest;
-					snippet_items = "<div class=\"chest\" draggable=\"true\" style=\"background-image: url('assets/items/chest/"+chest+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					snippet_items = "<div class=\"chestTarget\" draggable=\"true\" style=\"background-image: url('assets/items/chest/"+chest+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
-						$('#chest').replaceWith($(snippet_items));
+						$('.chestTarget').replaceWith($(snippet_items));
 					});
 					
 					var gloves = json_obj.gloves;
-					snippet_items = "<div class=\"gloves\" draggable=\"true\" style=\"background-image: url('assets/items/gloves/"+gloves+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					snippet_items = "<div class=\"glovesTarget\" draggable=\"true\" style=\"background-image: url('assets/items/gloves/"+gloves+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
-						$('#gloves').replaceWith($(snippet_items));
+						$('.glovesTarget').replaceWith($(snippet_items));
 					});
 					
 					var boots = json_obj.boots;
-					snippet_items = "<div class=\"boots\" draggable=\"true\" style=\"background-image: url('assets/items/boots/"+boots+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					snippet_items = "<div class=\"bootsTarget\" draggable=\"true\" style=\"background-image: url('assets/items/boots/"+boots+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
-						$('#boots').replaceWith($(snippet_items));
+						$('.bootsTarget').replaceWith($(snippet_items));
 					});
 					
 					var shield = json_obj.shield;
-					snippet_items = "<div class=\"shield\" draggable=\"true\" style=\"background-image: url('assets/items/shield/"+shield+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					snippet_items = "<div class=\"shieldTarget\" draggable=\"true\" style=\"background-image: url('assets/items/shield/"+shield+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
-						$('#shield').replaceWith($(snippet_items));
+						$('.shieldTarget').replaceWith($(snippet_items));
 					});
 					
 					var weapon = json_obj.weapon;
-					snippet_items = "<div class=\"weapon\" draggable=\"true\" style=\"background-image: url('assets/items/weapon/"+weapon+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					snippet_items = "<div class=\"weaponTarget\" draggable=\"true\" style=\"background-image: url('assets/items/weapon/"+weapon+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
 					$(function() {
-						$('#weapon').replaceWith($(snippet_items));
+						$('.weaponTarget').replaceWith($(snippet_items));
 					});
 				}
 			}
@@ -170,6 +166,8 @@
 							$(function() {
 								$('#inventory_description').replaceWith($(inv_description));
 							});
+							
+							return "OK";
 						}
 					}
 				}
@@ -183,10 +181,7 @@
 		<div id="stats"></div>
 		<div id="equipment"></div>
 		
-		<div id="inventory1">
-			<div id="test" class="draggable drag-drop" style="z-index:100; position:relative; background-color:white; width:20px; height:20px;"></div>	
-		</div>
-		
+		<div id="inventory1"></div>
 		<div id="inventory2"></div>
 		<div id="inventory3"></div>
 		<div id="inventory4"></div>

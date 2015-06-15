@@ -28,6 +28,21 @@
 					}
 				}
 				xmlhttp.send();
+				
+				xmlhttp_statistics = new XMLHttpRequest();
+				xmlhttp_statistics.open("GET","http://localhost:3000/main_info", true);
+				xmlhttp_statistics.onreadystatechange=function(){
+					if (xmlhttp_statistics.readyState==4 && xmlhttp_statistics.status==200){
+						var json_text = xmlhttp_statistics.responseText;
+						
+						var json_obj = JSON.parse(json_text);
+						var snippet_statistics = "<td id=\"total\">"+json_obj.total+"<\/div>";
+						$(function() {
+							$('#total').replaceWith($(snippet_statistics));
+						});
+					}
+				}
+				xmlhttp_statistics.send();
 			</script>
 			<div id="username"></div>
 			<div id="userimage"></div>
@@ -42,7 +57,7 @@
 							<table style="width:100%; height:50%">
 								<tr>
 									<td>Total fights</td>
-									<td>153</td>
+									<td id="total">153</td>
 								</tr>
 								<tr>
 									<td>Wins</td>

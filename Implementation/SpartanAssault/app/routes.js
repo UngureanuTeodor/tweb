@@ -52,7 +52,6 @@ module.exports = function(app, passport) {
 				if(!err) {
 					user[0].save({ gender: value }, function (err) {
 					});
-					req.session.gender = value;
 				}
 				else console.log('Error: '+err);
 			});
@@ -109,11 +108,26 @@ module.exports = function(app, passport) {
     });
 	
 	app.get('/main_info', function(req, res) {
-		var json_text = "{ \"username\" : \""+ req.session.username + "\", \"gender\" : \""
-											 + req.session.gender + "\" }";
-											 
-		res.writeHead(200, {"Content-Type": "text/plain"});
-		res.end(json_text);
+		var json_text = "{ \"username\" : \""+ req.session.username + "\", \"gender\" : \"";
+		
+		if(req.session.gender === "") {
+			var User = req.models.user;
+			
+			User.find({ userID : req.session.user_id }, function(err, user) {
+				if(!err) {
+					json_text += user[0].gender  + "\" }";
+					
+					res.writeHead(200, {"Content-Type": "text/plain"});
+					res.end(json_text);
+				}
+			});
+		}
+		else {
+			json_text += req.session.gender  + "\" }";
+					
+			res.writeHead(200, {"Content-Type": "text/plain"});
+			res.end(json_text);
+		}
 	});
 	
 	app.get('/stats', function(req, res) {
@@ -272,13 +286,23 @@ module.exports = function(app, passport) {
 		});
 	});
 	
-	/*app.get('/statistics', function(req, res) {
-		var json_text = "{ \"username\" : \""+ req.session.username + "\", \"gender\" : \""
-											 + req.session.gender + "\" }";
-											 
-		res.writeHead(200, {"Content-Type": "text/plain"});
-		res.end(json_text);
-	});*/
+	app.get('/fights', function(req, res){
+		var Fights = req.models.fights;
+		var json_text = "{ \"total\" : \"";
+		
+		Fights.find({ userID : req.session.user_id }, function(err, fights) {
+			if(!err) {
+				json_text += fights[0].total + "\", \"wins\" : \""
+							+ fights[0].wins + "\", \"defeats\" : \""
+							+ fights[0].defeats + "\", \"draws\" : \""
+							+ fights[0].draws + "\" , \"dmg_taken\" : \""
+							+ fights[0].dmg_taken + "\" , \"dmg_dealt\" : \""
+							+ fights[0].dmg_dealt + "\" , \"gold_won\" : \""
+							+ fights[0].gold_won + "\" , \"gold_lost\" : \""
+							+ fights[0].gold_lost + "\" }";
+			}
+		});
+	});
 
     app.post('/logout', function(req, res) {
         req.session.destroy();

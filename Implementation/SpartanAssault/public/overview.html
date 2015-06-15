@@ -20,8 +20,6 @@
 	</div>
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="/node_modules/interact.js/interact.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.4/interact.min.js"></script>
 	
 	<script type="text/javascript" language="javascript">
 
@@ -48,13 +46,26 @@
 				$("#tab_bar_overview_victories").css({"z-index":"3"});
 			});
 			
+			//var injectState = "ready";
+			
 			function injectOverviewHTML() {
 				var iframe = document.getElementsById('overview_frame');
 				var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 				
 				var get_things = innerdoc.getElementsById('magic_div');
 				var arr = get_things.getElementsByTagName('script');
-				eval(arr[0].innerHTML);
+				
+				/*console.log("ready");
+				if(injectState === "ready") {
+					//injectState = "not ready";
+					//alert("ready for some shit");
+					//console.log(*/
+					eval(arr[0].innerHTML);
+					/*);
+				}
+				else {
+					injectState = "ready";
+				}*/
 			}
 			
          });

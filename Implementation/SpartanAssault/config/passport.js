@@ -70,83 +70,85 @@ module.exports = function(passport) {
 				}
 			});
 			
-			if(!taken) {
-				var newUser = new User();
+			process.nextTick(function(taken) {
+				if(!taken) {
+					var newUser = new User();
 
-				// set the user's local credentials
-				newUser.username    = user_register;
-				newUser.password = newUser.generateHash(pass_register);
-				newUser.email = req.body.email_register;
-				newUser.gender = "";
-				newUser.origin = "";
+					// set the user's local credentials
+					newUser.username    = user_register;
+					newUser.password = newUser.generateHash(pass_register);
+					newUser.email = req.body.email_register;
+					newUser.gender = "";
+					newUser.origin = "";
 
-				// save the user
-				newUser.save(function(err) {
-					if (err) {
-						throw err;
-						console.log('Save error : '+err);
-					}
-					return done(null, newUser);
-				});
-				
-				var Character = req.models.character;
-				var newChar = new Character();
-				
-				newChar.level = 1;
-				newChar.xp = 0;
-				newChar.hp = 100;
-				newChar.strength = 1;
-				newChar.agility = 1;
-				newChar.stamina = 1;
-				newChar.charisma = 1;
-				newChar.gold = 0;
-				
-				newChar.save(function(err) {
-					if(err) {
-						throw err;
-						console.log('Save error : '+err);
-					}
-					return done(null, newChar);
-				});
-				
-				var Equip = req.models.equipment;
-				var newEquipment = new Equip();
-				
-				newEquipment.helmetID = 3;
-				newEquipment.chestID = 1;
-				newEquipment.glovesID = 2;
-				newEquipment.bootsID = 0;
-				newEquipment.weaponID = 0;
-				newEquipment.shieldID = 4;
-				
-				newEquipment.save(function(err) {
-					if(err) {
-						throw err;
-						console.log('Save error : '+err);
-					}
-					return done(null, newEquipment);
-				});
-				
-				var Fights = req.models.fights;
-				var newFights = new Fights();
-				
-				newFights.total = 0;
-				newFights.wins = 0;
-				newFights.defeats = 0;
-				newFights.draws = 0;
-				newFights.dmg_taken = 0;
-				newFights.dmg_dealt = 0;
-				newFights.gold_won = 0;
-				newFights.gold_lost = 0;
-				
-				newFights.save(function(err) {
-					if(err) {
-						throw err;
-						console.log('Save error : '+err);
-					}
-					return done(null, newFights);
-				});
-			}
+					// save the user
+					newUser.save(function(err) {
+						if (err) {
+							throw err;
+							console.log('Save error : '+err);
+						}
+						return done(null, newUser);
+					});
+					
+					var Character = req.models.character;
+					var newChar = new Character();
+					
+					newChar.level = 1;
+					newChar.xp = 0;
+					newChar.hp = 100;
+					newChar.strength = 1;
+					newChar.agility = 1;
+					newChar.stamina = 1;
+					newChar.charisma = 1;
+					newChar.gold = 0;
+					
+					newChar.save(function(err) {
+						if(err) {
+							throw err;
+							console.log('Save error : '+err);
+						}
+						return done(null, newChar);
+					});
+					
+					var Equip = req.models.equipment;
+					var newEquipment = new Equip();
+					
+					newEquipment.helmetID = 2;
+					newEquipment.chestID = 3;
+					newEquipment.glovesID = 1;
+					newEquipment.bootsID = 0;
+					newEquipment.weaponID = 0;
+					newEquipment.shieldID = 4;
+					
+					newEquipment.save(function(err) {
+						if(err) {
+							throw err;
+							console.log('Save error : '+err);
+						}
+						return done(null, newEquipment);
+					});
+					
+					var Fights = req.models.fights;
+					var newFights = new Fights();
+					
+					newFights.total = 0;
+					newFights.wins = 0;
+					newFights.defeats = 0;
+					newFights.draws = 0;
+					newFights.dmg_taken = 0;
+					newFights.dmg_dealt = 0;
+					newFights.gold_won = 0;
+					newFights.gold_lost = 0;
+					
+					newFights.save(function(err) {
+						if(err) {
+							throw err;
+							console.log('Save error : '+err);
+						}
+						return done(null, newFights);
+					});
+				}
+			});
 			
         });
 
