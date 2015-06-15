@@ -154,6 +154,22 @@ module.exports = function(app) {
 				}
 			});
 			
+			models.pvp=db.define("pvp", {
+				userID: { type: 'number', key: true},
+				total:Number,
+				wins:Number,
+				defeats:Number,
+				draws:Number,
+				dmg_taken:Number,
+				dmg_dealt:Number,
+				gold_won:Number,
+				gold_lost:Number
+			}, {
+				methods : {
+					
+				}
+			});
+			
 			db.sync();
 		}
 	}));

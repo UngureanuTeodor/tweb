@@ -136,12 +136,14 @@ module.exports = function(app, passport) {
 		
 		character.find({ userID : req.session.user_id }, function(err, characterInfo) {
 			if(!err) {
-				json_text = json_text + characterInfo[0].strength + "\", \"agility\" : \"" +
-										characterInfo[0].agility + "\", \"stamina\" : \"" +
-										characterInfo[0].stamina + "\", \"charisma\" : \"" +
-										characterInfo[0].charisma + "\" }";
-				res.writeHead(200, {"Content-Type": "text/plain"});
-				res.end(json_text);
+				if(characterInfo.length > 0) {
+					json_text = json_text + characterInfo[0].strength + "\", \"agility\" : \"" +
+											characterInfo[0].agility + "\", \"stamina\" : \"" +
+											characterInfo[0].stamina + "\", \"charisma\" : \"" +
+											characterInfo[0].charisma + "\" }";
+					res.writeHead(200, {"Content-Type": "text/plain"});
+					res.end(json_text);
+				}
 			}
 		});
 	});
@@ -199,10 +201,14 @@ module.exports = function(app, passport) {
 		inv.find({ userID : req.session.user_id }, function(err, inventories) {
 			if(!err) {
 				var json_text = "{ \"inventories\" : [ ";
+				var inv_value = 0, max_value = 0, min_value = 0;
 				
-				var get_inv = function(inventories, index, json_text, get_inv, inv_value) {
+				var get_inv = function(inventories, index, json_text, get_inv) {
+					console.log("Json: " + json_text);
 					if(inventories.length === 0) {
-						json_text += " ] }";
+						json_text += " ], \"inventory_val\" :  \"" + inv_value +
+									 "\", \"min_val\" : \"" + min_value +
+									 "\", \"max_val\" : \""+ max_value + "\" }";
 						
 						res.writeHead(200, {"Content-Type": "text/plain"});
 						res.end(json_text);
@@ -210,7 +216,6 @@ module.exports = function(app, passport) {
 						return false;
 					}
 					
-					inv_value = parseInt(inv_value);
 					json_text += "{ \"number\" : \""
 							   + inventories[index].inventory_number + "\", \"x\" : \""
 							   + inventories[index].inventory_x_position + "\", \"y\" : \""
@@ -223,10 +228,18 @@ module.exports = function(app, passport) {
 						armor.find({ armourID : inventories[index].itemID }, function(err, armor_item) {
 							if(!err) {
 								json_text += armor_item[0].armourName + "\", \"type\" : \"" + armor_item[0].armourType + "\" }";
-								inv_value+= parseInt(armor_item[0].price);
+								inv_value+= armor_item[0].price;
+								if(armor_item[0].price > max_value) {
+									max_value = armor_item[0].price;
+								}
+								if(min_value == 0 || armor_item[0].price < min_value) {
+									min_value = armor_item[0].price;
+								}
 								
 								if(index === parseInt(inventories.length-1)) {
-									json_text += "], \"inventory_val\" :  \"" + inv_value + "\"}";
+									json_text += " ], \"inventory_val\" :  \"" + inv_value +
+												 "\", \"min_val\" : \"" + min_value +
+												 "\", \"max_val\" : \""+ max_value + "\" }";
 									
 									res.writeHead(200, {"Content-Type": "text/plain"});
 									res.end(json_text);
@@ -243,11 +256,20 @@ module.exports = function(app, passport) {
 							weap.find({ weaponID : inventories[index].itemID }, function(err, weap_item) {
 								if(!err) {
 									json_text += weap_item[0].weaponName + "\", \"type\" : \"" + "weapon" + "\" }";
-									inv_value+= parseInt(weap_item[0].price);
+									inv_value+= weap_item[0].price;
+									if(weap_item[0].price > max_value) {
+										max_value = weap_item[0].price;
+									}
+									if(min_value == 0 || weap_item[0].price < min_value) {
+										min_value = weap_item[0].price;
+									}
 
 									if(index === parseInt(inventories.length-1)) {
-										json_text += "], \"inventory_val\" :  \"" + inv_value + "\"}";
+										json_text += " ], \"inventory_val\" :  \"" + inv_value +
+													 "\", \"min_val\" : \"" + min_value +
+													 "\", \"max_val\" : \""+ max_value + "\" }";
 										
+										console.log("Json: " + json_text);
 										res.writeHead(200, {"Content-Type": "text/plain"});
 										res.end(json_text);
 									}
@@ -262,11 +284,18 @@ module.exports = function(app, passport) {
 							consumables.find({ consumableID : inventories[index].itemID }, function(err, cons_item) {
 								if(!err) {
 									json_text += cons_item[0].consumableName + "\", \"type\" : \"" + cons_item[0].consumableType + "\" }";
-									inv_value+= parseInt(cons_item[0].price);
+									inv_value+= cons_item[0].price;
+									if(cons_item[0].price > max_value) {
+										max_value = cons_item[0].price;
+									}
+									if(min_value == 0 || cons_item[0].price < min_value) {
+										min_value = cons_item[0].price;
+									}
 									
-									console.log("Index: "+index+", Inv: "+parseInt(inventories.length-1));
 									if(index === parseInt(inventories.length-1)) {
-										json_text += "], \"inventory_val\" :  \"" + inv_value + "\"}";
+										json_text += " ], \"inventory_val\" :  \"" + inv_value +
+													 "\", \"min_val\" : \"" + min_value +
+													 "\", \"max_val\" : \""+ max_value + "\" }";
 										
 										res.writeHead(200, {"Content-Type": "text/plain"});
 										res.end(json_text);
@@ -280,7 +309,7 @@ module.exports = function(app, passport) {
 						}
 				}
 				
-				get_inv(inventories, 0, json_text, get_inv, 0);
+				get_inv(inventories, 0, json_text, get_inv);
 			}
 	
 		});
@@ -293,13 +322,37 @@ module.exports = function(app, passport) {
 		Fights.find({ userID : req.session.user_id }, function(err, fights) {
 			if(!err) {
 				json_text += fights[0].total + "\", \"wins\" : \""
-							+ fights[0].wins + "\", \"defeats\" : \""
-							+ fights[0].defeats + "\", \"draws\" : \""
-							+ fights[0].draws + "\" , \"dmg_taken\" : \""
-							+ fights[0].dmg_taken + "\" , \"dmg_dealt\" : \""
-							+ fights[0].dmg_dealt + "\" , \"gold_won\" : \""
-							+ fights[0].gold_won + "\" , \"gold_lost\" : \""
-							+ fights[0].gold_lost + "\" }";
+						  + fights[0].wins + "\", \"defeats\" : \""
+						  + fights[0].defeats + "\", \"draws\" : \""
+						  + fights[0].draws + "\" , \"dmg_taken\" : \""
+						  + fights[0].dmg_taken + "\" , \"dmg_dealt\" : \""
+					   	  + fights[0].dmg_dealt + "\" , \"gold_won\" : \""
+						  + fights[0].gold_won + "\" , \"gold_lost\" : \""
+						  + fights[0].gold_lost + "\" }";
+						  
+				res.writeHead(200, {"Content-Type": "text/plain"});
+				res.end(json_text);
+			}
+		});
+	});
+	
+	app.get('/pvp', function(req, res){
+		var Pvp = req.models.pvp;
+		var json_text = "{ \"total_pvp\" : \"";
+		
+		Pvp.find({ userID : req.session.user_id }, function(err, pvp_fights) {
+			if(!err) {
+				json_text += pvp_fights[0].total + "\", \"wins_pvp\" : \""
+						  + pvp_fights[0].wins + "\", \"defeats_pvp\" : \""
+						  + pvp_fights[0].defeats + "\", \"draws_pvp\" : \""
+						  + pvp_fights[0].draws + "\" , \"dmg_taken_pvp\" : \""
+						  + pvp_fights[0].dmg_taken + "\" , \"dmg_dealt_pvp\" : \""
+					   	  + pvp_fights[0].dmg_dealt + "\" , \"gold_won_pvp\" : \""
+						  + pvp_fights[0].gold_won + "\" , \"gold_lost_pvp\" : \""
+						  + pvp_fights[0].gold_lost + "\" }";
+						  
+				res.writeHead(200, {"Content-Type": "text/plain"});
+				res.end(json_text);
 			}
 		});
 	});

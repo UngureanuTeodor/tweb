@@ -147,6 +147,26 @@ module.exports = function(passport) {
 						}
 						return done(null, newFights);
 					});
+					
+					var Pvp = req.models.pvp;
+					var newPvp = new Pvp();
+					
+					newPvp.total = 0;
+					newPvp.wins = 0;
+					newPvp.defeats = 0;
+					newPvp.draws = 0;
+					newPvp.dmg_taken = 0;
+					newPvp.dmg_dealt = 0;
+					newPvp.gold_won = 0;
+					newPvp.gold_lost = 0;
+					
+					newPvp.save(function(err) {
+						if(err) {
+							throw err;
+							console.log('Save error : '+err);
+						}
+						return done(null, newPvp);
+					});
 				}
 			});
 			

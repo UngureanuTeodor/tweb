@@ -29,63 +29,149 @@
 				}
 				xmlhttp.send();
 				
-				xmlhttp_statistics = new XMLHttpRequest();
-				xmlhttp_statistics.open("GET","http://localhost:3000/main_info", true);
-				xmlhttp_statistics.onreadystatechange=function(){
-					if (xmlhttp_statistics.readyState==4 && xmlhttp_statistics.status==200){
-						var json_text = xmlhttp_statistics.responseText;
+				xmlhttp_fights = new XMLHttpRequest();
+				xmlhttp_fights.open("GET","http://localhost:3000/fights", true);
+				xmlhttp_fights.onreadystatechange=function(){
+					if (xmlhttp_fights.readyState==4 && xmlhttp_fights.status==200){
+						var json_text = xmlhttp_fights.responseText;
 						
 						var json_obj = JSON.parse(json_text);
 						var snippet_statistics = "<td id=\"total\">"+json_obj.total+"<\/div>";
 						$(function() {
 							$('#total').replaceWith($(snippet_statistics));
 						});
+						
+						snippet_statistics = "<td id=\"wins\">"+json_obj.wins+"<\/div>";
+						$(function() {
+							$('#wins').replaceWith($(snippet_statistics));
+						});
+						
+						snippet_statistics = "<td id=\"defeats\">"+json_obj.defeats+"<\/div>";
+						$(function() {
+							$('#defeats').replaceWith($(snippet_statistics));
+						});
+						
+						snippet_statistics = "<td id=\"draws\">"+json_obj.draws+"<\/div>";
+						$(function() {
+							$('#draws').replaceWith($(snippet_statistics));
+						});
+						
+						snippet_statistics = "<td id=\"dmg_taken\">"+json_obj.dmg_taken+"<\/div>";
+						$(function() {
+							$('#dmg_taken').replaceWith($(snippet_statistics));
+						});
+						
+						snippet_statistics = "<td id=\"dmg_dealt\">"+json_obj.dmg_dealt+"<\/div>";
+						$(function() {
+							$('#dmg_dealt').replaceWith($(snippet_statistics));
+						});
+						
+						snippet_statistics = "<td id=\"gold_won\">"+json_obj.gold_won+"<\/div>";
+						$(function() {
+							$('#gold_won').replaceWith($(snippet_statistics));
+						});
+						
+						snippet_statistics = "<td id=\"gold_lost\">"+json_obj.gold_lost+"<\/div>";
+						$(function() {
+							$('#gold_lost').replaceWith($(snippet_statistics));
+						});
 					}
 				}
-				xmlhttp_statistics.send();
+				xmlhttp_fights.send();
+				
+				xmlhttp_pvp = new XMLHttpRequest();
+				xmlhttp_pvp.open("GET","http://localhost:3000/pvp", true);
+				xmlhttp_pvp.onreadystatechange=function(){
+					if (xmlhttp_pvp.readyState==4 && xmlhttp_pvp.status==200){
+						var json_text = xmlhttp_pvp.responseText;
+						
+						var json_obj = JSON.parse(json_text);
+						alert("Json: " + json_text);
+						var snippet_pvp = "<td id=\"total_pvp\">"+json_obj.total_pvp+"<\/div>";
+						$(function() {
+							$('#total_pvp').replaceWith($(snippet_pvp));
+						});
+						
+						snippet_pvp = "<td id=\"wins_pvp\">"+json_obj.wins_pvp+"<\/div>";
+						$(function() {
+							$('#wins_pvp').replaceWith($(snippet_pvp));
+						});
+						
+						snippet_pvp = "<td id=\"defeats_pvp\">"+json_obj.defeats_pvp+"<\/div>";
+						$(function() {
+							$('#defeats_pvp').replaceWith($(snippet_pvp));
+						});
+						
+						snippet_pvp = "<td id=\"draws_pvp\">"+json_obj.draws_pvp+"<\/div>";
+						$(function() {
+							$('#draws_pvp').replaceWith($(snippet_pvp));
+						});
+						
+						snippet_pvp = "<td id=\"dmg_taken_pvp\">"+json_obj.dmg_taken_pvp+"<\/div>";
+						$(function() {
+							$('#dmg_taken_pvp').replaceWith($(snippet_pvp));
+						});
+						
+						snippet_pvp = "<td id=\"dmg_dealt_pvp\">"+json_obj.dmg_dealt_pvp+"<\/div>";
+						$(function() {
+							$('#dmg_dealt_pvp').replaceWith($(snippet_pvp));
+						});
+						
+						snippet_pvp = "<td id=\"gold_won_pvp\">"+json_obj.gold_won_pvp+"<\/div>";
+						$(function() {
+							$('#gold_won_pvp').replaceWith($(snippet_pvp));
+						});
+						
+						snippet_pvp = "<td id=\"gold_lost_pvp\">"+json_obj.gold_lost_pvp+"<\/div>";
+						$(function() {
+							$('#gold_lost_pvp').replaceWith($(snippet_pvp));
+						});
+					}
+				}
+				xmlhttp_pvp.send();
 			</script>
 			<div id="username"></div>
 			<div id="userimage"></div>
 			<div id="tablediv">
 				<table style="width:100%; height:50%">
 					<tr style="background-color:rgba(204,164,42)">
-						<td>Arena statistics</td>
 						<td>Dungeon statistics</td>
+						<td>Arena statistics</td>
 					</tr>
 					<tr>
 						<td>
 							<table style="width:100%; height:50%">
 								<tr>
 									<td>Total fights</td>
-									<td id="total">153</td>
+									<td id="total"></td>
 								</tr>
 								<tr>
 									<td>Wins</td>
-									<td>101</td>
+									<td id="wins"></td>
 								</tr>
 								<tr>
 									<td>Defeats</td>
-									<td>51</td>
+									<td id="defeats"></td>
 								</tr>
 								<tr>
 									<td>Draws</td>
-									<td>1</td>
+									<td id="draws"></td>
 								</tr>
 								<tr>
 									<td>Total damage taken</td>
-									<td>12.612</td>
+									<td id="dmg_taken"></td>
 								</tr>
 								<tr>
 									<td>Total damage dealt</td>
-									<td>24.891</td>
+									<td id="dmg_dealt"></td>
 								</tr>
 								<tr>
 									<td>Gold won</td>
-									<td>16.701</td>
+									<td id="gold_won"></td>
 								</tr>
 								<tr>
 									<td>Gold lost</td>
-									<td>8.526</td>
+									<td id="gold_lost"></td>
 								</tr>
 							</table>
 						</td>
@@ -93,35 +179,35 @@
 							<table style="width:100%; height:50%">
 								<tr>
 									<td>Total fights</td>
-									<td>153</td>
+									<td id="total_pvp"></td>
 								</tr>
 								<tr>
 									<td>Wins</td>
-									<td>101</td>
+									<td id="wins_pvp"></td>
 								</tr>
 								<tr>
 									<td>Defeats</td>
-									<td>51</td>
+									<td id="defeats_pvp"></td>
 								</tr>
 								<tr>
 									<td>Draws</td>
-									<td>1</td>
+									<td id="draws_pvp"></td>
 								</tr>
 								<tr>
 									<td>Total damage taken</td>
-									<td>12.612</td>
+									<td id="dmg_taken_pvp"></td>
 								</tr>
 								<tr>
 									<td>Total damage dealt</td>
-									<td>24.891</td>
+									<td id="dmg_dealt_pvp"></td>
 								</tr>
 								<tr>
 									<td>Gold won</td>
-									<td>16.701</td>
+									<td id="gold_won_pvp"></td>
 								</tr>
 								<tr>
 									<td>Gold lost</td>
-									<td>8.526</td>
+									<td id="gold_lost_pvp"></td>
 								</tr>
 							</table>
 						</td>

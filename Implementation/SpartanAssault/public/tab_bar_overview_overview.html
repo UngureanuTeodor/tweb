@@ -103,12 +103,15 @@
 					var json_text = xmlhttp_inv.responseText;
 					
 					var json_obj = JSON.parse(json_text);
-					var json_inv = json_obj.inventory_val;
-					if(json_obj.inventories.length === 0) {
-						json_inv = 0;
-					}
-					var inv_description = "<div id=\"inventory_description\" <p> Total inventory value: " + json_inv+
-																	  "<\/p> <p> No. of items: " + json_obj.inventories.length+
+					var json_inv = parseInt(json_obj.inventory_val);
+					
+					var inv_description = "<div id=\"inventory_description\" <p> Total inventory value: " + json_inv +
+																	  "<img src=\"assets/items/others/coins3.png\" height=\"15\" width=\"15\"> <\/p>" +
+																	  "<p> The cheapest item costs" + parseInt(json_obj.min_val) +
+																	  "<img src=\"assets/items/others/coins3.png\" height=\"15\" width=\"15\"> <\/p>" +
+																	  "<p> The most expensive item costs" + parseInt(json_obj.max_val) +
+																	  "<img src=\"assets/items/others/coins3.png\" height=\"15\" width=\"15\"> <\/p>" +
+																	  "<p> No. of items: " + json_obj.inventories.length +
 																	  "<\/p> <\/div>";
 					
 					var inv1="<div id=\"inventory1\" style=\"display: block;\">", inv2="<div id=\"inventory2\" style=\"display: none;\">", inv3="<div id=\"inventory3\" style=\"display: none;\">",
