@@ -237,8 +237,6 @@
 		left:796px;
 		width:72px;
 		height:72px;
-		background-color:red;
-		opacity:0.5;
 	}
 	
 	.weaponTarget {
@@ -273,92 +271,34 @@
 		height:72px;
 	}
 	
-	.bootsTarget {
+	.bootsTarget{
 		position: absolute;
 		top:298px;
 		left:796px;
 		width:72px;
 		height:72px;
-		background-color:yellow;
-		opacity:0.5;
+		background-color:blue;
 	}
 	
 	.helmet {
-		cursor: move;
 	}
 	
 	.weapon {
-		cursor: move;
 	}
 	
 	.chest {
-		cursor: move;
 	}
 	
 	.shield {
-		cursor: move;
 	}
 	
 	.gloves {
-		cursor: move;
 	}
 	
 	.boots {
-		background-color:yellow;
-		opacity:0.5;
-		cursor: move;
-	}
-	
-	
-	
-	
-	.helmet.over {
-		border: 2px dashed #000;
-	}
-	
-	.weapon.over {
-		border: 2px dashed #000;
-	}
-	
-	.chest.over {
-		border: 2px dashed #000;
-	}
-	
-	.shield.over {
-		border: 2px dashed #000;
-	}
-	
-	.gloves.over {
-		border: 2px dashed #000;
-	}
-	
-	.boots.over {
-		border: 2px dashed #000;
-	}
-	
-	
-	
-	
-	.helmetTarget.over {
-		border: 2px dashed #000;
-	}
-	
-	.weaponTarget.over {
-		border: 2px dashed #000;
-	}
-	
-	.chestTarget.over {
-		border: 2px dashed #000;
-	}
-	
-	.shieldTarget.over {
-		border: 2px dashed #000;
-	}
-	
-	.glovesTarget.over {
-		border: 2px dashed #000;
-	}
-	
-	.bootsTarget.over {
-		border: 2px dashed #000;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 60px;
+		height: 60px;
 	}

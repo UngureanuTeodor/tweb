@@ -319,7 +319,7 @@ module.exports = function(app, passport) {
 		var Fights = req.models.fights;
 		var json_text = "{ \"total\" : \"";
 		
-		Fights.find({ userID : req.session.user_id }, function(err, fights) {
+		Fights.find({ userID : req.session.user_id, type : "dungeon" }, function(err, fights) {
 			if(!err) {
 				json_text += fights[0].total + "\", \"wins\" : \""
 						  + fights[0].wins + "\", \"defeats\" : \""
@@ -337,10 +337,10 @@ module.exports = function(app, passport) {
 	});
 	
 	app.get('/pvp', function(req, res){
-		var Pvp = req.models.pvp;
+		var Pvp = req.models.fights;
 		var json_text = "{ \"total_pvp\" : \"";
 		
-		Pvp.find({ userID : req.session.user_id }, function(err, pvp_fights) {
+		Pvp.find({ userID : req.session.user_id, type : "arena" }, function(err, pvp_fights) {
 			if(!err) {
 				json_text += pvp_fights[0].total + "\", \"wins_pvp\" : \""
 						  + pvp_fights[0].wins + "\", \"defeats_pvp\" : \""

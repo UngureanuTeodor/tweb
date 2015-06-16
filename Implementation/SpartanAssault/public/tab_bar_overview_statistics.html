@@ -86,7 +86,6 @@
 						var json_text = xmlhttp_pvp.responseText;
 						
 						var json_obj = JSON.parse(json_text);
-						alert("Json: " + json_text);
 						var snippet_pvp = "<td id=\"total_pvp\">"+json_obj.total_pvp+"<\/div>";
 						$(function() {
 							$('#total_pvp').replaceWith($(snippet_pvp));

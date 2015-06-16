@@ -147,23 +147,8 @@ module.exports = function(app) {
 				dmg_taken:Number,
 				dmg_dealt:Number,
 				gold_won:Number,
-				gold_lost:Number
-			}, {
-				methods : {
-					
-				}
-			});
-			
-			models.pvp=db.define("pvp", {
-				userID: { type: 'number', key: true},
-				total:Number,
-				wins:Number,
-				defeats:Number,
-				draws:Number,
-				dmg_taken:Number,
-				dmg_dealt:Number,
-				gold_won:Number,
-				gold_lost:Number
+				gold_lost:Number,
+				type: { type: 'enum', values: ['dungeon', 'arena'], key: true}
 			}, {
 				methods : {
 					

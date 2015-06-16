@@ -128,44 +128,38 @@ module.exports = function(passport) {
 						return done(null, newEquipment);
 					});
 					
-					var Fights = req.models.fights;
-					var newFights = new Fights();
-					
-					newFights.total = 0;
-					newFights.wins = 0;
-					newFights.defeats = 0;
-					newFights.draws = 0;
-					newFights.dmg_taken = 0;
-					newFights.dmg_dealt = 0;
-					newFights.gold_won = 0;
-					newFights.gold_lost = 0;
-					
-					newFights.save(function(err) {
-						if(err) {
-							throw err;
-							console.log('Save error : '+err);
+					User.find({}, function(err, users) {
+						if(!err) {
+							var Fights = req.models.fights;
+							var newFights = new Fights();
+							
+							newFights.total = 0;
+							newFights.wins = 0;
+							newFights.defeats = 0;
+							newFights.draws = 0;
+							newFights.dmg_taken = 0;
+							newFights.dmg_dealt = 0;
+							newFights.gold_won = 0;
+							newFights.gold_lost = 0;
+							newFights.type = "dungeon";
+							
+							newFights.save(function(err) {
+								if(err) {
+									throw err;
+									console.log('Save error : '+err);
+								}
+								return done(null, newFights);
+							});
+							
+							newFights.type = "arena";
+							newFights.save(function(err) {
+								if(err) {
+									throw err;
+									console.log('Save error : '+err);
+								}
+								return done(null, newFights);
+							});
 						}
-						return done(null, newFights);
-					});
-					
-					var Pvp = req.models.pvp;
-					var newPvp = new Pvp();
-					
-					newPvp.total = 0;
-					newPvp.wins = 0;
-					newPvp.defeats = 0;
-					newPvp.draws = 0;
-					newPvp.dmg_taken = 0;
-					newPvp.dmg_dealt = 0;
-					newPvp.gold_won = 0;
-					newPvp.gold_lost = 0;
-					
-					newPvp.save(function(err) {
-						if(err) {
-							throw err;
-							console.log('Save error : '+err);
-						}
-						return done(null, newPvp);
 					});
 				}
 			});
