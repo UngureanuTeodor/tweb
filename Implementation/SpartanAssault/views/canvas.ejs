@@ -28,6 +28,10 @@
 				<div id="crafting" class="buttons">Crafting</div>
 				<div id="upgrade" class="buttons">Upgrade</div>
 				<div id="market" class="buttons">Market</div>
+				
+				<div id="canyon" class="buttons">Steep Canyon</div>
+				<div id="forest" class="buttons">Dark Forest</div>
+				<div id="temple" class="buttons">Temple Ruins</div>
 			</div>
 		</div>
 
@@ -43,7 +47,12 @@
 	<script type="text/javascript" language="javascript">
 
 		$(document).ready(function() {
-			$("#overview, #objectives, #guild, #work, #colosseum, #training, #top, #weaponsmith, #armoursmith, #goodsMerchant, #crafting, #upgrade, #market").click(function(event){
+		
+			$("#canyon").hide();
+			$("#forest").hide();
+			$("#temple").hide();
+		
+			$("#overview, #objectives, #guild, #work, #colosseum, #training, #top, #weaponsmith, #armoursmith, #goodsMerchant, #crafting, #upgrade, #market, #canyon, #forest, #temple").click(function(event){
 				$("#canvas").html("<iframe src='"+$(this).attr('id')+".html' style=\"width:1073px; height:528px;\" frameborder=\"0\"></iframe>");
 				var name = $(this).attr('id');
 				if(name=="overview" || name=="objectives" || name=="guild" || name=="work" || name=="colosseum" || name=="training" || name=="top")
@@ -54,6 +63,9 @@
 					$('#crafting').removeClass('butonActiv');
 					$('#upgrade').removeClass('butonActiv');
 					$('#market').removeClass('butonActiv');
+					$("#canyon").removeClass('butonActiv');
+					$("#forest").removeClass('butonActiv');
+					$("#temple").removeClass('butonActiv');
 					}
 				$(this).siblings().removeClass('butonActiv');
 				$(this).parent().siblings().removeClass('butonActiv');
@@ -72,6 +84,10 @@
 				$("#upgrade").show();
 				$("#market").show();
 				
+				$("#canyon").hide();
+				$("#forest").hide();
+				$("#temple").hide();
+				
 				$("#west_banner_south").addClass('addBackgroundLeft');
 			});
 			
@@ -86,6 +102,10 @@
 				$("#crafting").hide();
 				$("#upgrade").hide();
 				$("#market").hide();
+				
+				$("#canyon").show();
+				$("#forest").show();
+				$("#temple").show();
 				
 				$('#west_banner_south').addClass('addBackgroundRight');
 			});

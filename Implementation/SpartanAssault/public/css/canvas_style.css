@@ -62,7 +62,7 @@
 	}
 	
 	#overview, #objectives, #guild, #work, #colosseum, #training, #top,
-	#weaponsmith, #armoursmith, #goodsMerchant, #crafting, #upgrade, #market,
+	#weaponsmith, #armoursmith, #goodsMerchant, #crafting, #upgrade, #market, #canyon, #forest, #temple,
 	#left_button, #right_button, #aux .buttons{
 		position:relative;
 		width: 100px;
@@ -146,4 +146,16 @@
 	
 	#market{
 		top:24px;
+	}
+	
+	#canyon{
+		top:-16px;
+	}
+	
+	#forest{
+		top:-8px;
+	}
+	
+	#temple{
+		top:0px;
 	}

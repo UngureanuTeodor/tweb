@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="css/temple_style.css" media="screen" />
+<title>Spartan Assault</title>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+	<div id="container">
+		<div id="tab_bar">
+			<div id="tab_bar_temple">Temple</div>
+		</div>
+		<div id="canvas">	
+		</div>
+	</div>	
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+	<script type="text/javascript" language="javascript">
+
+		$(document).ready(function() {
+			$("#tab_bar_temple").click(function(event){
+				$("#canvas").html("<iframe src='"+$(this).attr('id')+".html' style=\"width:1053px; height:458px;\" frameborder=\"0\"></iframe>");
+			});
+
+			$("#tab_bar_temple").click(function(event){
+				$("#tab_bar_temple").css({"z-index":"1"});
+			});
+			
+         });
+		 
+    </script>
+</body>
