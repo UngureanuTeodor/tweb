@@ -3,6 +3,23 @@
 		display:block;
 	}
 	
+	[draggable=true] {
+	  -moz-user-select: none;
+	  -khtml-user-select: none;
+	  -webkit-user-select: none;
+	  user-select: none;
+	  -khtml-user-drag: element;
+	  -webkit-user-drag: element;
+	  cursor:move;
+	}
+	
+	body{
+		display:block;
+	}
+	
+	.drop-target {
+	}
+	
 	#container{
 		position: absolute;
 		top:0;
@@ -22,7 +39,21 @@
 		top:20px;
 		left:400px;
 		width:200px;
-		height:190px;
+		height:100px;
+		font-size:20px;
+		text-align:center;
+	}
+	
+	#armoursmith_inventory {
+		background-image:url(../assets/armoursmith_inventory.png);
+		background-repeat:no-repeat;
+		background-size:contain;
+		position:absolute;
+		background-size:cover;
+		top:150px;
+		left:370px;
+		width:300px;
+		height:267px;
 	}
 	
 	#picture{
@@ -38,139 +69,217 @@
 		height:420px;
 	}
 	
-	#inventory{
-		background-image:url(../assets/inventory.jpg);
+	#equipment {
+		background-image:url(../assets/equipment.jpg);
 		background-repeat:no-repeat;
+		background-position:center;
+		background-size:cover;
+		position: absolute;
+		top:0px;
+		left:720px;
+		width:300px;
+		height:320px;
+	}
+	
+	#inventory1 {
+		background-color:rgb(186,170,126);
+		background-image:url(../assets/inventory.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
 		background-size:contain;
-		position:absolute;
-		background-size:cover;
-		top:20px;
-		left:700px;
-		width:250px;
-		height:270px;
-	}
-	
-	#inventory1{
-		background-image:url(../assets/inventory1.jpg);
-		background-repeat:no-repeat;
-		background-size:cover;
-		position:absolute;
-		background-color:green;
-		top:230px;
-		left:400px;
-		width:200px;
-		height:210px;
-	}
-	
-	#inventory2{
-		background-image:url(../assets/inventory2.png);
-		background-repeat:no-repeat;
-		background-size:cover;
-		position:absolute;
-		top:310px;
-		left:680px;
+		position: absolute;
+		top:350px;
+		left:720px;
 		width:300px;
 		height:140px;
 	}
 	
-	#helmet{
-		background-size:cover;
-		position:absolute;
-		background-color:red;
-		opacity:0;
-		top:41px;
-		left:800px;
-		width:55px;
-		height:55px;	
+	#inventory2 {
+		background-color:rgb(186,170,126);
+		background-image:url(../assets/inventory.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
+		background-size:contain;
+		position: absolute;
+		top:350px;
+		left:720px;
+		width:300px;
+		height:140px;
 	}
 	
-	#amulet{
-		background-size:cover;
-		position:absolute;
-		background-color:red;
-		opacity:0;
-		top:72px;
-		left:877px;
-		width:23px;
-		height:23px;
-	
+	#inventory3 {
+		background-color:rgb(186,170,126);
+		background-image:url(../assets/inventory.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
+		background-size:contain;
+		position: absolute;
+		top:350px;
+		left:720px;
+		width:300px;
+		height:140px;
 	}
 	
-	#weapon{
-		background-size:cover;
-		position:absolute;
-		background-color:red;
-		opacity:0;
-		top:109px;
-		left:725px;
-		width:53px;
-		height:85px;
+	#inventory4 {
+		background-color:rgb(186,170,126);
+		background-image:url(../assets/inventory.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
+		background-size:contain;
+		position: absolute;
+		top:350px;
+		left:720px;
+		width:300px;
+		height:140px;
 	}
 	
-	#armourchest{
-		background-size:cover;
-		position:absolute;
-		background-color:red;
-		opacity:0;
-		top:109px;
-		left:802px;
-		width:53px;
-		height:85px;
-	
+	#inventory5 {
+		background-color:rgb(186,170,126);
+		background-image:url(../assets/inventory.png);
+		background-repeat:no-repeat;
+		background-position: bottom center;
+		background-size:contain;
+		position: absolute;
+		top:350px;
+		left:720px;
+		width:300px;
+		height:140px;
 	}
 	
-	#shield{
-		background-size:cover;
-		position:absolute;
-		background-color:red;
-		opacity:0;
-		top:109px;
-		left:878px;
-		width:53px;
-		height:85px;
-	
+	#inventory_menu_bar {
+		position: absolute;
+		top:320px;
+		left:720px;
+		width:270px;
+		height:30px;
 	}
 	
-	#gloves{
-		background-size:cover;
-		position:absolute;
-		background-color:red;
-		opacity:0;
-		top:215px;
-		left:725px;
-		width:53px;
-		height:54px;
+	.alignCenter{
+		font-size:12px;
+		color:white;
+		text-align: center;
+		vertical-align: middle;
+		line-height: 30px; 
+		font-weight: 900;
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+		user-select: none;
+		opacity:0.6;
 	}
 	
-	#boots{
-		background-size:cover;
-		position:absolute;
-		background-color:red;
-		opacity:0;
-		top:215px;
-		left:802px;
-		width:53px;
-		height:54px;
+	#inventory_menu_bar_button1 {
+		background-color:rgb(136,114,47);
+		position: absolute;
+		top:320px;
+		left:720px;
+		width:30px;
+		height:30px;
 	}
 	
-	#ring1{
-		background-size:cover;
-		position:absolute;
-		background-color:red;
-		opacity:0;
-		top:215px;
-		left:876px;
-		width:25px;
-		height:24px;
+	#inventory_menu_bar_button2 {
+		background-color:rgb(136,114,47);
+		position: absolute;
+		top:320px;
+		left:755px;
+		width:30px;
+		height:30px;
 	}
 	
-	#ring2{
-		background-size:cover;
-		position:absolute;
-		background-color:red;
-		opacity:0;
-		top:215px;
-		left:908px;
-		width:25px;
-		height:24px;
+	#inventory_menu_bar_button3 {
+		background-color:rgb(136,114,47);
+		position: absolute;
+		top:320px;
+		left:790px;
+		width:30px;
+		height:30px;
+	}
+	
+	#inventory_menu_bar_button4 {
+		background-color:rgb(136,114,47);
+		position: absolute;
+		top:320px;
+		left:825px;
+		width:30px;
+		height:30px;
+	}
+	
+	#inventory_menu_bar_button5 {
+		background-color:rgb(136,114,47);
+		position: absolute;
+		top:320px;
+		left:860px;
+		width:30px;
+		height:30px;
+	}
+	
+	.helmetTarget {
+		position: absolute;
+		top:19px;
+		left:836px;
+		width:72px;
+		height:72px;
+	}
+	
+	.weaponTarget {
+		position: absolute;
+		top:100px;
+		left:745px;
+		width:72px;
+		height:110px;
+	}
+	
+	.chestTarget {
+		position: absolute;
+		top:100px;
+		left:836px;
+		width:72px;
+		height:110px;
+	}
+	
+	.shieldTarget {
+		position: absolute;
+		top:100px;
+		left:928px;
+		width:72px;
+		height:110px;
+	}
+	
+	.glovesTarget {
+		position: absolute;
+		top:228px;
+		left:745px;
+		width:72px;
+		height:72px;
+	}
+	
+	.bootsTarget{
+		position: absolute;
+		top:228px;
+		left:836px;
+		width:72px;
+		height:72px;
+	}
+	
+	.helmet {
+	}
+	
+	.weapon {
+	}
+	
+	.chest {
+	}
+	
+	.shield {
+	}
+	
+	.gloves {
+	}
+	
+	.boots {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 60px;
+		height: 60px;
 	}

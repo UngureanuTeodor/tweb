@@ -11,19 +11,352 @@
 <body>
 	<div id="container">
 		<div id="picture"></div>
-		<div id="info"></div>
-		<div id="inventory"></div>
+		<div id="armoursmith_inventory"></div>
+		<div id="info"><br>Welcome to Weaponsmith</div>
+	</div>
+	<div id="magic_div">
+		<script type="text/javascript">
+		
+			xmlhttp_items = new XMLHttpRequest();
+			xmlhttp_items.open("GET","http://localhost:3000/equipped_items", true);
+			xmlhttp_items.onreadystatechange=function(){
+				if (xmlhttp_items.readyState==4 && xmlhttp_items.status==200){
+					var json_text = xmlhttp_items.responseText;
+					
+					var json_obj = JSON.parse(json_text);
+					var helm = json_obj.helmet;
+					var snippet_items = "<div class=\"helmetTarget\" draggable=\"true\" style=\"left: 0px; top: 0px; background-image: url('assets/items/helm/"+helm+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					$(function() {
+						$('.helmetTarget').css({"draggable":"true", "background":"url('assets/items/helmet/"+helm+".png') no-repeat center center", "background-size":"contain"});
+					});
+					
+					var chest = json_obj.chest;
+					snippet_items = "<div class=\"chestTarget\" draggable=\"true\" style=\"background-image: url('assets/items/chest/"+chest+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					$(function() {
+						$('.chestTarget').replaceWith($(snippet_items));
+					});
+					
+					var gloves = json_obj.gloves;
+					snippet_items = "<div class=\"glovesTarget\" draggable=\"true\" style=\"background-image: url('assets/items/gloves/"+gloves+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					$(function() {
+						$('.glovesTarget').replaceWith($(snippet_items));
+					});
+					
+					var boots = json_obj.boots;
+					snippet_items = "<div class=\"bootsTarget\" draggable=\"true\" style=\"left: 0px; top: 0px; background-image: url('assets/items/boots/"+boots+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					$(function() {
+						$('.bootsTarget').css({"draggable":"true", "background":"url('assets/items/boots/"+boots+".png') no-repeat center center", "background-size":"contain"});
+					});
+					
+					var shield = json_obj.shield;
+					snippet_items = "<div class=\"shieldTarget\" draggable=\"true\" style=\"background-image: url('assets/items/shield/"+shield+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					$(function() {
+						$('.shieldTarget').replaceWith($(snippet_items));
+					});
+					
+					var weapon = json_obj.weapon;
+					snippet_items = "<div class=\"weaponTarget\" draggable=\"true\" style=\"background-image: url('assets/items/weapon/"+weapon+".png'); background-size: contain; background-repeat : no-repeat; background-position: center center\"><\/div>";
+					$(function() {
+						$('.weaponTarget').replaceWith($(snippet_items));
+					});
+				}
+			}
+			xmlhttp_items.send();
+			
+			xmlhttp_inv = new XMLHttpRequest();
+			xmlhttp_inv.open("GET","http://localhost:3000/inventory", true);
+			xmlhttp_inv.onreadystatechange=function(){
+				if (xmlhttp_inv.readyState==4 && xmlhttp_inv.status==200){
+					var json_text = xmlhttp_inv.responseText;
+					
+					var json_obj = JSON.parse(json_text);
+					var json_inv = json_obj.inventory_val;
+					if(json_obj.inventories.length === 0) {
+						json_inv = 0;
+					}
+					
+					var inv1="<div id=\"inventory1\" style=\"display: block;\">", inv2="<div id=\"inventory2\" style=\"display: none;\">", inv3="<div id=\"inventory3\" style=\"display: none; top:0px; left:0px;\">",
+						inv4="<div id=\"inventory4\" style=\"display: none; top:0px; left:0px;\">", inv5="<div id=\"inventory5\" style=\"display: none; top:0px; left:0px;\">";
+				
+					for(var index = 0; index <=json_obj.inventories.length; index++) {
+						if(index < parseInt(json_obj.inventories.length)) {
+							if(parseInt(json_obj.inventories[index]["number"]) == 1) {
+								inv1 += " <div id=\"item"+index+"\" class=\""+json_obj.inventories[index]["type"]+"\" draggable=\"true\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+										"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
+										"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
+										"background-repeat : no-repeat; background-position: center center; background-size: contain;\"> <\/div>";
+							}
+							else if(parseInt(json_obj.inventories[index]["number"]) == 2) {
+									inv2 += " <div id=\"item"+index+"\" class=\""+json_obj.inventories[index]["type"]+"\" draggable=\"true\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+									"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
+									"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
+									"background-repeat : no-repeat; background-position: center center; background-size: contain\"> <\/div>";
+								}
+								else if(parseInt(json_obj.inventories[index]["number"]) == 3) {
+										inv3 += " <div id=\"item"+index+"\" class=\""+json_obj.inventories[index]["type"]+"\" draggable=\"true\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+										"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
+										"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
+										"background-repeat : no-repeat; background-position: center center; background-size: contain\"> <\/div>";
+									}
+									else if(parseInt(json_obj.inventories[index]["number"]) == 2) {
+											inv4 += " <div id=\"item"+index+"\" class=\""+json_obj.inventories[index]["type"]+"\" draggable=\"true\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+											"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
+											"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
+											"background-repeat : no-repeat; background-position: center center; background-size: contain\"> <\/div>";
+										}
+										else {
+											inv5 += " <div id=\"item"+index+"\" class=\""+json_obj.inventories[index]["type"]+"\" draggable=\"true\" style=\"z-index:100; position:absolute; width:60px; height:60px; left: "+(17+(66*(json_obj.inventories[index]["y"])))+"px; "+
+											"top: "+(6+(66*(json_obj.inventories[index]["x"])))+"px; " +
+											"background-image: url('assets/items/"+json_obj.inventories[index]["type"]+"/"+json_obj.inventories[index]["name"]+".png'); " +
+											"background-repeat : no-repeat; background-position: center center; background-size: contain\"> <\/div>";
+										}
+						}
+						else {
+							$(function() {
+								$('#inventory1').replaceWith($(inv1+"<\/div>"));
+							});
+							$(function() {
+								$('#inventory2').replaceWith($(inv2+"<\/div>"));
+							});
+							$(function() {
+								$('#inventory3').replaceWith($(inv3+"<\/div>"));
+							});
+							$(function() {
+								$('#inventory4').replaceWith($(inv4+"<\/div>"));
+							});
+							$(function() {
+								$('#inventory5').replaceWith($(inv5+"<\/div>"));
+							});
+							
+							var dragSrcEl = null;
+							function handleDragStart(e) {
+							  // Target (this) element is the source node.
+							  dragSrcEl = this;
+							  e.dataTransfer.effectAllowed = 'move';
+							  e.dataTransfer.setData('text/html', this.innerHTML);
+							}
+
+							function handleDragOver(e) {
+							  if (e.preventDefault) {
+								e.preventDefault(); // Necessary. Allows us to drop.
+							  }
+							  e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+							  return false;
+							}
+
+							function handleDragEnter(e) {
+							  // this / e.target is the current hover target.
+							  //this.classList.add('over');
+							}
+
+							function handleDragLeave(e) {
+							  //this.classList.remove('over');  // this / e.target is previous target element.
+							}
+
+							function handleDrop(e) {
+							  // this/e.target is current target element.
+							  if (e.stopPropagation) {
+								e.stopPropagation(); // Stops some browsers from redirecting.
+							  }
+
+							  // Don't do anything if dropping the same column we're dragging.
+							  if (dragSrcEl != this) {
+								// Set the source column's HTML to the HTML of the column we dropped on.
+								dragSrcEl.innerHTML = this.innerHTML;
+								this.innerHTML = e.dataTransfer.getData('text/html');
+								
+								var targetName = ($(this).attr('class').split(" ")[0]);
+								var nodeName = ($(dragSrcEl).attr('class').split(" ")[0]);
+								var nodeNameIntermediar = targetName.replace('Target','');
+								
+								if(targetName===(nodeName+'Target')){												
+									var bg = $('#'+$(dragSrcEl).attr('id')).css('background');
+									var bg2 = $('.'+targetName).css('background');
+
+									$('#'+$(dragSrcEl).attr('id')).css("background", bg2);
+									$('.'+targetName).css("background", bg);
+								}
+								else{
+										if(nodeName==nodeNameIntermediar){
+											//replace with
+											var bg = $('#'+$(dragSrcEl).attr('id')).css('background');
+											var bg2 = $('#'+$(this).attr('id')).css('background');
+
+											$('#'+$(dragSrcEl).attr('id')).css("background", bg2);
+											$('#'+$(this).attr('id')).css("background", bg);  
+										}
+										else{
+											var classNameNode = $(dragSrcEl).attr('class');
+											var idNameNode = $(dragSrcEl).attr('id');
+											
+											var classNameTarget = $(this).attr('class');
+											var idNameTarget = $(this).attr('id');
+											
+											$(dragSrcEl).attr('class', classNameTarget);
+											$(dragSrcEl).attr('id', idNameTarget);
+											
+											$(this).attr('class', classNameNode);
+											$(this).attr('id', idNameNode);
+											
+											var bg = $('#'+$(dragSrcEl).attr('id')).css('background');
+											var bg2 = $('#'+$(this).attr('id')).css('background');
+
+											$('#'+$(dragSrcEl).attr('id')).css("background", bg2);
+											$('#'+$(this).attr('id')).css("background", bg);  
+											
+										}
+									}
+								
+							  }
+							return false;
+							}
+
+							function handleDragEnd(e) {
+							  // this/e.target is the source node.
+							}
+
+							function loadStuff() {
+							
+								$(".helmet, .weapon, .chest, .shield, .gloves, .boots").mousedown(function(){
+							
+								var cols=document.querySelectorAll(".helmet, .weapon, .chest, .shield, .gloves, .boots, .helmetTarget, .weaponTarget, .chestTarget, .shieldTarget, .glovesTarget, .bootsTarget");
+
+								[].forEach.call(cols, function(col) {
+								  col.removeEventListener('dragstart', handleDragStart, false);
+								  col.removeEventListener('dragenter', handleDragEnter, false)
+								  col.removeEventListener('dragover', handleDragOver, false);
+								  col.removeEventListener('dragleave', handleDragLeave, false);
+								  col.removeEventListener('drop', handleDrop, false);
+								  col.removeEventListener('dragend', handleDragEnd, false);
+								});
+								
+								var cols = document.querySelectorAll('.helmet, .weapon, .chest, .shield, .gloves, .boots');
+								
+								[].forEach.call(cols, function(col) {
+								  col.addEventListener('dragstart', handleDragStart, false);
+								  col.addEventListener('dragenter', handleDragEnter, false)
+								  col.addEventListener('dragover', handleDragOver, false);
+								  col.addEventListener('dragleave', handleDragLeave, false);
+								  col.addEventListener('drop', handleDrop, false);
+								  col.addEventListener('dragend', handleDragEnd, false);
+								});
+															
+								cols = document.querySelectorAll('.'+$(this).attr('class')+"Target");
+								
+								[].forEach.call(cols, function(col) {
+								  col.addEventListener('dragstart', handleDragStart, false);
+								  col.addEventListener('dragenter', handleDragEnter, false)
+								  col.addEventListener('dragover', handleDragOver, false);
+								  col.addEventListener('dragleave', handleDragLeave, false);
+								  col.addEventListener('drop', handleDrop, false);
+								  col.addEventListener('dragend', handleDragEnd, false);
+									});
+								});
+								
+								$(".helmetTarget, .weaponTarget, .chestTarget, .shieldTarget, .glovesTarget, .bootsTarget").mousedown(function(){
+									var cols=document.querySelectorAll(".helmetTarget, .weaponTarget, .chestTarget, .shieldTarget, .glovesTarget, .bootsTarget");
+									
+									[].forEach.call(cols, function(col) {
+									  col.removeEventListener('dragstart', handleDragStart, false);
+									  col.removeEventListener('dragenter', handleDragEnter, false)
+									  col.removeEventListener('dragover', handleDragOver, false);
+									  col.removeEventListener('dragleave', handleDragLeave, false);
+									  col.removeEventListener('drop', handleDrop, false);
+									  col.removeEventListener('dragend', handleDragEnd, false);
+									});
+								});
+							}
+							
+							loadStuff();
+						}
+					}
+				}
+			}
+			xmlhttp_inv.send();
+			
+		</script>
+
+		<div id="title"></div>
+		<div id="profile_picture"></div>
+		<div id="stats"></div>
+		<div id="equipment"></div>
+		
 		<div id="inventory1"></div>
 		<div id="inventory2"></div>
-		<div id="helmet"></div>
-		<div id="amulet"></div>
-		<div id="weapon"></div>
-		<div id="armourchest"></div>
-		<div id="shield"></div>
-		<div id="gloves"></div>
-		<div id="boots"></div>
-		<div id="ring1"></div>
-		<div id="ring2"></div>
+		<div id="inventory3"></div>
+		<div id="inventory4"></div>
+		<div id="inventory5"></div>
+		
+		<div id="inventory_description"></div>
+		<div id="inventory_menu_bar"></div>
+		<div id="inventory_menu_bar_button1" class="alignCenter">I</div>
+		<div id="inventory_menu_bar_button2" class="alignCenter">II</div>
+		<div id="inventory_menu_bar_button3" class="alignCenter">III</div>
+		<div id="inventory_menu_bar_button4" class="alignCenter">IV</div>
+		<div id="inventory_menu_bar_button5" class="alignCenter">V</div>
+		
+		<div class="helmetTarget" draggable="true"></div>
+		<div class="weaponTarget" draggable="true"></div>
+		<div class="chestTarget" draggable="true"></div>
+		<div class="shieldTarget" draggable="true"></div>
+		<div class="glovesTarget" draggable="true"></div>
+		<div class="bootsTarget" draggable="true"></div>
+		
 	</div>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	
+	<script type="text/javascript" language="javascript">
+
+	$(document).ready(function() {
+			
+			$("#inventory1").show();
+			$("#inventory2").hide();
+			$("#inventory3").hide();
+			$("#inventory4").hide();
+			$("#inventory5").hide();
+			
+			$("#inventory_menu_bar_button1").click(function(event){
+				$("#inventory1").show();
+				$("#inventory2").hide();
+				$("#inventory3").hide();
+				$("#inventory4").hide();
+				$("#inventory5").hide();
+			});
+			
+			$("#inventory_menu_bar_button2").click(function(event){
+				$("#inventory1").hide();
+				$("#inventory2").show();
+				$("#inventory3").hide();
+				$("#inventory4").hide();
+				$("#inventory5").hide();
+			});
+			
+			$("#inventory_menu_bar_button3").click(function(event){
+				$("#inventory1").hide();
+				$("#inventory2").hide();
+				$("#inventory3").show();
+				$("#inventory4").hide();
+				$("#inventory5").hide();
+			});
+			
+			$("#inventory_menu_bar_button4").click(function(event){
+				$("#inventory1").hide();
+				$("#inventory2").hide();
+				$("#inventory3").hide();
+				$("#inventory4").show();
+				$("#inventory5").hide();
+			});
+			
+			$("#inventory_menu_bar_button5").click(function(event){
+				$("#inventory1").hide();
+				$("#inventory2").hide();
+				$("#inventory3").hide();
+				$("#inventory4").hide();
+				$("#inventory5").show();
+			});
+	});		
+	</script>
+	
 </body>
 </html>
