@@ -159,13 +159,7 @@ module.exports = function(app) {
 				warehouseID: { type: 'number', key: true},
 				itemID:Number,
 				type:String,
-				defeats:Number,
-				draws:Number,
-				dmg_taken:Number,
-				dmg_dealt:Number,
-				gold_won:Number,
-				gold_lost:Number,
-				type: { type: 'enum', values: ['dungeon', 'arena'], key: true}
+				timestamp: Date
 			}, {
 				methods : {
 					

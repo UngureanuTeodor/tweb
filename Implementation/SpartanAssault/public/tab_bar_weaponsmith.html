@@ -16,7 +16,6 @@
 	</div>
 	<div id="magic_div">
 		<script type="text/javascript">
-		
 			xmlhttp_items = new XMLHttpRequest();
 			xmlhttp_items.open("GET","http://localhost:3000/equipped_items", true);
 			xmlhttp_items.onreadystatechange=function(){
@@ -274,6 +273,17 @@
 			}
 			xmlhttp_inv.send();
 			
+			var xmlhttp_wpnsmith = new XMLHttpRequest();
+			xmlhttp_wpnsmith.open("POST","http://localhost:3000/wpnsmith", true);
+			xmlhttp_wpnsmith.onreadystatechange=function(){
+				if (xmlhttp_wpnsmith.readyState==4 && xmlhttp_wpnsmith.status==200){
+					var response=xmlhttp_wpnsmith.responseText;
+					alert(response);
+					var response_json=JSON.parse(response);
+					//alert(response_json);
+				}
+			}
+			xmlhttp_wpnsmith.send(); 
 		</script>
 
 		<div id="title"></div>

@@ -204,7 +204,6 @@ module.exports = function(app, passport) {
 				var inv_value = 0, max_value = 0, min_value = 0;
 				
 				var get_inv = function(inventories, index, json_text, get_inv) {
-					console.log("Json: " + json_text);
 					if(inventories.length === 0) {
 						json_text += " ], \"inventory_val\" :  \"" + inv_value +
 									 "\", \"min_val\" : \"" + min_value +
@@ -356,7 +355,106 @@ module.exports = function(app, passport) {
 			}
 		});
 	});
+	app.post('/wpnsmith',function(req,res){
+		var now=new Date();
+		var nowmill=Date.parse(now.toString());
+		var datemill=nowmill+1000*60*60*25;
+		var newNow=new Date(datemill);
+		var warehouse=req.models.warehouse;
+		var weapon=req.models.weapon;
+		var response="{weaponsmith:[";
+		warehouse.find({type:'weapon'},function(err,witems){
+			if(!err){
+				var stamp=witems[0].timestamp;
+				if(nowmill>Date.parse(stamp.toString())){
+					warehouse.find({type:'weapon', timestamp:stamp}).remove(function(err){});
 
+					var ids="[";
+					weapon.aggregate({}).max("weaponID").get(function(err, max) {
+						
+						var myRand=Math.floor(Math.random()*100%16)+1;		
+						for(var randAux=0; randAux<=myRand; randAux++){
+							if(randAux>0 && randAux<=myRand-1){
+								ids+=",";
+							}
+							if(randAux<myRand){
+								ids+=(Math.floor(Math.random()*100%(max+1)));
+							}else{
+								ids+="]";
+								var vector = JSON.parse(ids);
+								weapon.find({weaponID:vector}, function(err, weapons){
+									if(!err){
+										for (var indexID=0; indexID<=vector.length; indexID++){
+											if(indexID==vector.length){
+												response+="]}";
+												res.writeHead(200, {"Content-Type": "text/plain"});
+												res.end(response);
+												break;
+											}
+											for (var indexWpn=0; indexWpn<weapons.length; indexWpn++){
+												if(vector[indexID]==weapons[indexWpn].weaponID){
+													response+="{\"name\":\""+weapons[indexWpn].weaponName+"\", \"price\":"+weapons[indexWpn].price+
+													",\"damage\":"+weapons[indexWpn].damage_max+"}";
+													
+													var newItem = new warehouse();
+													newItem.type='weapon';
+													newItem.itemID = weapons[indexWpn].weaponID;
+													newItem.timestamp = newNow;
+													newItem.save(function(err){
+														if(err){
+															throw err;
+														}
+													});
+													
+													if(indexID!=vector.length-1){
+														response+=",";
+													}
+													break;											
+												}
+											}
+										}
+									}
+								});
+							}
+						}
+					});
+					
+				}else{
+					warehouse.find({type:'weapon'}, function(err, sell_weapons) {
+						if(!err) {
+							weapon.find({}, function(err, weapons){
+								if(!err){
+									for(var index = 0; index <= sell_weapons.length; index++) {
+										if(index == sell_weapons.length) {
+											response+="]}";
+											res.writeHead(200, {"Content-Type": "text/plain"});
+											res.end(response);
+											console.log(response);
+										}
+										else {
+											for(var index2 = 0; index2 < weapons.length; index2++){
+												if(sell_weapons[index].itemID==weapons[index2].weaponID){
+													if(index != 0) {
+														response += ",";
+													}
+													response += "{\"name\":\""+weapons[index2].weaponName+"\", \"price\":"+weapons[index2].price+
+																",\"damage\":"+weapons[index2].damage_max+"}";
+												}
+											}
+										}
+									}
+								}
+								else
+									console.log('Error:'+err);
+							});
+						}
+					});
+				}
+			}else{
+				console.log(err);
+			}
+		});
+	});
     app.post('/logout', function(req, res) {
         req.session.destroy();
         res.redirect('/');
