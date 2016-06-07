@@ -10,7 +10,7 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
 require('./config/database')(app);
-require('./config/passport')(passport);
+require('./config/passport')(passport, app);
 
 app.use(morgan('dev'));
 app.use(cookieParser());

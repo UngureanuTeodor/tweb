@@ -30,6 +30,14 @@ module.exports = function(app, passport) {
 		failureFlash : true
 	}));
 	
+	app.get('/twitter', passport.authenticate('twitter'));
+	
+	app.get('/auth/twitter/callback',
+        passport.authenticate('twitter', {
+            successRedirect : '/success',
+            failureRedirect : '/'
+        }));
+	
 	app.get('/gender', function(req, res) {
 		if(req.session.gender === "") {
 			res.render('gender.ejs', { messageGender : req.flash('messageGender')});

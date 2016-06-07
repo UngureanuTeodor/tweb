@@ -2,7 +2,7 @@ var orm = require('orm');
 var bcrypt   = require('bcrypt-nodejs');
 
 module.exports = function(app) {
-	var str = "mysql://sql580654:zV6%dZ2!@sql5.freemysqlhosting.net:3306/sql580654";
+	var str = "mysql://danteryuu:parola@db4free.net:3306/spartanassault";
 	var encoded_str = str.replace(/%([^\d].)/, "%25$1");
 	app.use(orm.express(encoded_str,
 	{
@@ -12,6 +12,7 @@ module.exports = function(app) {
 				username : String,
 				password : String,
 				email : String,
+				twitterID : String,
 				gender : ["male", "female", ""],
 				origin : ["north", "east", "south", "west", ""]
 			}, {
@@ -34,21 +35,7 @@ module.exports = function(app) {
 				strength:Number,
 				agility:Number,
 				stamina:Number,
-				charisma:Number,
-				guildID:Number,
-				gold: Number
-			},{
-				methods: {
-					
-				}
-			});
-			
-			models.guild=db.define("guild",{
-				guildID: { type: 'number', key: true },
-				guildName:String,
-				ownerID:Number,
-				number_members:Number,
-				level:Number
+				charisma:Number
 			},{
 				methods: {
 					
@@ -126,20 +113,8 @@ module.exports = function(app) {
 				}
 			});
 			
-			models.market=db.define("market",{
-				auctionID: { type: 'number', key: true },
-				userID:Number,
-				price:Number,
-				duration:Number,
-				inventoryID:Number
-			},{
-				methods: {
-					
-				}
-			});
-			
 			models.fights=db.define("fights", {
-				userID: { type: 'number', key: true},
+				username: { type: 'text', key: true},
 				total:Number,
 				wins:Number,
 				defeats:Number,
@@ -155,23 +130,7 @@ module.exports = function(app) {
 				}
 			});
 			
-			models.warehouse=db.define("warehouse", {
-				warehouseID: { type: 'number', key: true},
-				itemID:Number,
-				type:String,
-				timestamp: Date
-			}, {
-				methods : {
-					
-				}
-			});
-			
 			db.sync();
 		}
 	}));
-	
-	//this.db = orm;
-
 };
-
-//exports.userSchema = User;
